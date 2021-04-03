@@ -32,16 +32,16 @@ public class Menu {
                     break;
                 
                 default:
-                    System.out.println("A opção digitada não consta no menu!");
-                    System.out.println("Digite apenas as letras 'i', 'b' ou 'r'!");
+                    System.out.println("\n\t" + "A opção digitada não consta no menu!");
+                    System.out.println("\t" + "Digite apenas as letras 'i', 'b' ou 'r'!" + "\n");
                     menu();
                     break;
 
             }
         }
         catch (Exception e) {
-            System.out.println("A opção digitada não consta no menu!");
-            System.out.println("Digite apenas as letras 'i', 'b' ou 'r'!");
+            System.out.println("\n\t" + "A opção digitada não consta no menu!");
+            System.out.println("\t" + "Digite apenas as letras 'i', 'b' ou 'r'!" + "\n");
         }
         input.close();
     }
