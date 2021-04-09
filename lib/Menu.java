@@ -28,7 +28,7 @@ public class Menu {
                         System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
                         
                     } 
-                    catch (Exception e) {
+                    catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
                         menu();
                     }
@@ -43,24 +43,24 @@ public class Menu {
                         System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
                         
                     } 
-                    catch (Exception e) {
+                    catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
                         menu();
                     }
                     break;
 
-                case "r":
+                case "r": 
                     
                     System.out.print("\n" + "Digite um valor inteiro positivo para remover da árvore: ");
-                        
+                    
                     try {
                         int key = input.nextInt();
                         System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
                         
                     } 
-                    catch (Exception e) {
+                    catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
-                        menu();
+                        menu();            
                     }
                     break;
                 
