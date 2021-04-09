@@ -6,29 +6,62 @@ public class Menu {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Escolha uma opção no menu abaixo:" + "\n");
+        System.out.println("\n" + "Escolha uma opção no menu abaixo:" + "\n");
 
         System.out.println("\t" + "'i' - Para inserir um nodo;");
         System.out.println("\t" + "'b' - Para buscar um nodo;");
         System.out.println("\t" + "'r' - Para remover um nodo;");
 
         System.out.print("\n" + "Qual a opção desejada? ");
-
+        
         try {
             String option = input.nextLine();
 
             switch(option.toLowerCase()) {
 
                 case "i":
-                    System.out.println("teste de inserção");
+                
+                    System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
+                    
+                    try {
+                        int key = input.nextInt();
+                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
+                        
+                    } 
+                    catch (Exception e) {
+                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        menu();
+                    }
                     break;
 
                 case "b":
-                    System.out.println("teste de busca");
+                   
+                    System.out.print("\n" + "Digite um valor inteiro para buscar na árvore: ");
+                        
+                    try {
+                        int key = input.nextInt();
+                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
+                        
+                    } 
+                    catch (Exception e) {
+                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        menu();
+                    }
                     break;
 
                 case "r":
-                    System.out.println("teste de remoção");
+                    
+                    System.out.print("\n" + "Digite um valor inteiro positivo para remover da árvore: ");
+                        
+                    try {
+                        int key = input.nextInt();
+                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
+                        
+                    } 
+                    catch (Exception e) {
+                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        menu();
+                    }
                     break;
                 
                 default:
@@ -45,8 +78,7 @@ public class Menu {
         }
         input.close();
     }
-
-
+}
 
     //Todos os comandos têm um parâmetro que é um número inteiro.
     
@@ -64,5 +96,3 @@ public class Menu {
     //TODO: Método REMOÇÃO    
         //comando r
         //chamar método de saída
-
-}
