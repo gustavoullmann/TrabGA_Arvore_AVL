@@ -20,16 +20,21 @@ public class Menu {
             switch(option.toLowerCase()) {
 
                 case "i":
-                
-                    System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
-                    
+            
                     try {
-                        int key = input.nextInt();
-                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
-                        
+                        System.out.print("\n\t" + "ATENÇÃO: Digite qualquer tecla não numérica para sair e voltar ao Menu principal! " + "\n");
+
+                        boolean aux = true;
+
+                        while(aux) {
+                            System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
+                            
+                            int key = input.nextInt();
+                            System.out.println("TESTE chave digitada: " + key);                         //TODO: remover esse teste  
+                        }                        
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
                         menu();
                     }
                     break;
@@ -40,8 +45,7 @@ public class Menu {
                         
                     try {
                         int key = input.nextInt();
-                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
-                        
+                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste                             
                     } 
                     catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
@@ -55,8 +59,7 @@ public class Menu {
                     
                     try {
                         int key = input.nextInt();
-                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste      
-                        
+                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste                              
                     } 
                     catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
@@ -69,7 +72,6 @@ public class Menu {
                     System.out.println("\t" + "Digite apenas as letras 'i', 'b' ou 'r'!" + "\n");
                     menu();
                     break;
-
             }
         }
         catch (Exception e) {
