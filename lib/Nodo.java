@@ -5,7 +5,7 @@ public class Nodo {
     private Nodo parent;
     private Nodo rightSon;
     private Nodo leftSon;
-    private int hight;
+    private int nodeHeight;
     private int balanceFactor;
 
     public Nodo (int data) {
@@ -13,7 +13,7 @@ public class Nodo {
         this.parent = null;
         this.rightSon = null;
         this.leftSon = null;
-        this.hight = 0;
+        this.nodeHeight = 0;
         this.balanceFactor = 0;
     }
 
@@ -53,11 +53,11 @@ public class Nodo {
 	}
 
 	public int getHight() {
-		return hight;
+		return nodeHeight;
 	}
 
 	public void setHight(int hight) {
-		this.hight = hight;
+		this.nodeHeight = hight;
 	}
 
 	public int getBalanceFactor() {
@@ -76,7 +76,7 @@ public class Nodo {
                 "Pai: " + parent + "\n" +
                 "Filho à direita: " + rightSon + "\n" + 
                 "Filho à esquerda: " + leftSon + "\n" +
-                "Altura do nodo: " + hight + "\n" +
+                "Altura do nodo: " + nodeHeight + "\n" +
                 "Fator de balanceamento: " + balanceFactor + "\n";
 
     
