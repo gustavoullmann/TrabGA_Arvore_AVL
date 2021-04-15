@@ -29,8 +29,12 @@ public class Menu {
                         while(aux) {
                             System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
                             
-                            int key = input.nextInt();
-                            System.out.println("TESTE chave digitada: " + key);                         //TODO: remover esse teste  
+                            Integer key = input.nextInt();
+
+                            Tree AVLTree = new Tree();
+                            AVLTree.insertNode(key);
+                            
+                            System.out.println(AVLTree.getRoot().printNodeAttributes());                //TODO: remover esse teste
                         }                        
                     } 
                     catch (Exception InputMismatchException) {
