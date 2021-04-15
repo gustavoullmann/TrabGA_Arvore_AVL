@@ -3,16 +3,39 @@ public class Tree {
 
     private Nodo root;
 
-    public Tree(Nodo nodo) {
-        this.root = nodo;
+    public Tree() {
+        this.root = null;
     }
 
     public Nodo getRoot() {
         return root;
     }
 
-    public void setRoot(Nodo nodo) {
-        root = nodo;
+    public void setRoot(Nodo node) {
+        root = node;
+    }
+
+    public Nodo insertNode(Integer data) {
+
+        Nodo node = new Nodo(data);
+
+        Nodo leftSonNode = new Nodo();
+        Nodo rightSonNode = new Nodo();
+
+        node.setLeftSon(leftSonNode);
+        node.setRightSon(rightSonNode);
+
+        leftSonNode.setParent(node);
+        rightSonNode.setParent(node);
+
+        Nodo.calculateBalanceFactor(node);
+        Nodo.calculateNodeHeight(node);
+
+        if(root == null) {
+            root = node;
+        }                                               //TODO fazer o else...
+
+        return node;
     }
 
     //método insere
