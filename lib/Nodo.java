@@ -13,7 +13,7 @@ public class Nodo {
         this.parent = null;
         this.rightSon = null;
         this.leftSon = null;
-        this.nodeHeight = 0;
+        this.nodeHeight = 0;			//nodeHeight = -1 ao criar nó vazio, facilita a implementação do cálculo da altura do nó pai
         this.balanceFactor = 0;
     }
 
@@ -68,7 +68,15 @@ public class Nodo {
 		this.balanceFactor = balanceFactor;
 	}
 
-    
+	public static int calculateBalanceFactor(Nodo node) {
+
+		int heightLeftSon = node.getLeftSon().getHight();
+		int heightRightSon = node.getRightSon().getHight();
+
+		int balanceFactor = heightLeftSon - heightRightSon;
+
+		return balanceFactor;
+	}    
 
     @Override
     public String toString() {
