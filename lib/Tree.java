@@ -1,6 +1,20 @@
 
 public class Tree {
 
+    private Nodo root;
+
+    public Tree(Nodo nodo) {
+        this.root = nodo;
+    }
+
+    public Nodo getRoot() {
+        return root;
+    }
+
+    public void setRoot(Nodo nodo) {
+        root = nodo;
+    }
+
     //método insere
     //método remove
     //método rotação simples à direita
@@ -11,7 +25,7 @@ public class Tree {
     //método cálculo altura do nó
 
 /*
-INSERÇÂO
+INSERÇÃO
 
 Percorre-se a árvore verificando se a chave já existe ou não
 - Em caso positivo, encerra a tentativa de inserção
