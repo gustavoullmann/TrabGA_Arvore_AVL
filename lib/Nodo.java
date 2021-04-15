@@ -1,30 +1,36 @@
 
 public class Nodo {
 
-    private int data;
+    private Integer data;
     private Nodo parent;
     private Nodo rightSon;
     private Nodo leftSon;
     private int nodeHeight;
     private int balanceFactor;
 
-    public Nodo (int data) {
+    public Nodo(Integer data) {
         this.data = data;
+        this.parent = null;
+        this.rightSon = null;
+        this.leftSon = null;
+        this.nodeHeight = 0;
+        this.balanceFactor = 0;
+    }
+
+    public Nodo() {       			    //construtor vazio para montar filhos vazios de nó folha; 
+		this.data = null;
         this.parent = null;
         this.rightSon = null;
         this.leftSon = null;
         this.nodeHeight = -1;			//nodeHeight = -1 ao criar nó vazio, facilita a implementação do cálculo da altura do nó pai
         this.balanceFactor = 0;
-    }
+	}
 
-    public Nodo() {            //construtor vazio para montar uma árvore vazia; 
-    }
-
-    public int getData() {
+    public Integer getData() {
 		return data;
 	}
 
-	public void setData(int data) {
+	public void setData(Integer data) {
 		this.data = data;
 	}
 
@@ -52,12 +58,12 @@ public class Nodo {
 		this.leftSon = leftSon;
 	}
 
-	public int getHight() {
+	public int getNodeHeight() {
 		return nodeHeight;
 	}
 
-	public void setHight(int hight) {
-		this.nodeHeight = hight;
+	public void setNodeHeight(int height) {
+		this.nodeHeight = height;
 	}
 
 	public int getBalanceFactor() {
@@ -68,25 +74,31 @@ public class Nodo {
 		this.balanceFactor = balanceFactor;
 	}
 
-	public int calculateBalanceFactor(Nodo node) {
+	public static void calculateBalanceFactor(Nodo node) {
 
-		int heightLeftSon = node.getLeftSon().getHight();
-		int heightRightSon = node.getRightSon().getHight();
+		int heightLeftSon = node.getLeftSon().getNodeHeight();
+		int heightRightSon = node.getRightSon().getNodeHeight();
 
-		int balanceFactor = heightLeftSon - heightRightSon;
-
-		return balanceFactor;
+		node.setBalanceFactor(heightLeftSon - heightRightSon);
 	}
 
-	public int calculateNodeHeight(Nodo node) {
+	public static void calculateNodeHeight(Nodo node) {
 
-		int heightLeftSon = node.getLeftSon().getHight();
-		int heightRightSon = node.getRightSon().getHight();
+		int heightLeftSon = node.getLeftSon().getNodeHeight();
+		int heightRightSon = node.getRightSon().getNodeHeight();
 
 		int maxSonHeight = Math.max(heightLeftSon, heightRightSon);
 
-		int nodeHeight = maxSonHeight + 1;
-		return nodeHeight;
+		node.setNodeHeight(maxSonHeight + 1);
+	}
+
+	public String printNodeAttributes() {
+		return 	"DATA: " + data + "\n" +
+				"PARENT: " + parent + "\n" +
+				"RIGHT SON: " + rightSon + "\n" +
+				"LEFT SON: " + leftSon + "\n" +
+				"NODE HEIGHT: " + nodeHeight + "\n" +
+				"BALANCE FACTOR: " + balanceFactor;
 	}
 	
 	//public static void simpleRightRotation {}
@@ -109,19 +121,5 @@ public class Nodo {
 
 		//Toda vez que uma sub-árvore fica com um fator:
 		//negativo e sua sub-árvore da direita tem um fator positivo
-
-
-
-
-    @Override
-    public String toString() {
-        return  "Nodo data: " + data +"\n" +
-                "Pai: " + parent + "\n" +
-                "Filho à direita: " + rightSon + "\n" + 
-                "Filho à esquerda: " + leftSon + "\n" +
-                "Altura do nodo: " + nodeHeight + "\n" +
-                "Fator de balanceamento: " + balanceFactor + "\n";
-
-    
-    }    
+   
 }
