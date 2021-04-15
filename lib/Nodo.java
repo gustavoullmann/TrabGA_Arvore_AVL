@@ -13,7 +13,7 @@ public class Nodo {
         this.parent = null;
         this.rightSon = null;
         this.leftSon = null;
-        this.nodeHeight = 0;			//nodeHeight = -1 ao criar nó vazio, facilita a implementação do cálculo da altura do nó pai
+        this.nodeHeight = -1;			//nodeHeight = -1 ao criar nó vazio, facilita a implementação do cálculo da altura do nó pai
         this.balanceFactor = 0;
     }
 
@@ -68,7 +68,7 @@ public class Nodo {
 		this.balanceFactor = balanceFactor;
 	}
 
-	public static int calculateBalanceFactor(Nodo node) {
+	public int calculateBalanceFactor(Nodo node) {
 
 		int heightLeftSon = node.getLeftSon().getHight();
 		int heightRightSon = node.getRightSon().getHight();
@@ -76,7 +76,42 @@ public class Nodo {
 		int balanceFactor = heightLeftSon - heightRightSon;
 
 		return balanceFactor;
-	}    
+	}
+
+	public int calculateNodeHeight(Nodo node) {
+
+		int heightLeftSon = node.getLeftSon().getHight();
+		int heightRightSon = node.getRightSon().getHight();
+
+		int maxSonHeight = Math.max(heightLeftSon, heightRightSon);
+
+		int nodeHeight = maxSonHeight + 1;
+		return nodeHeight;
+	}
+	
+	//public static void simpleRightRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//positivo e sua sub-árvore da esquerda também tem um fator positivo
+	
+	//public static void simpleLeftRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//negativo e sua sub-árvore da direita também tem um fator negativo
+
+	//public static void doubleRightRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//positivo e sua sub-árvore da esquerda tem um fator negativo
+
+
+	//public static void doubleLeftRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//negativo e sua sub-árvore da direita tem um fator positivo
+
+
+
 
     @Override
     public String toString() {
