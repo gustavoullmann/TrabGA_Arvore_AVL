@@ -4,7 +4,7 @@ public class Tree {
     private Nodo root;
 
     public Tree() {
-        this.root = null;
+        this.root = new Nodo();                             //TODO: revisar se é uma boa prática chamar um construtor dentro de outro
     }
 
     public Nodo getRoot() {
@@ -17,7 +17,9 @@ public class Tree {
 
     public Nodo insertNode(Integer data) {
 
-        Nodo node = new Nodo(data);
+        Nodo node = findEmptyNode(data);
+
+        node.setData(data);
 
         Nodo leftSonNode = new Nodo();
         Nodo rightSonNode = new Nodo();
@@ -31,11 +33,28 @@ public class Tree {
         Nodo.calculateBalanceFactor(node);
         Nodo.calculateNodeHeight(node);
 
-        if(root == null) {
-            root = node;
-        }                                               //TODO fazer o else...
-
         return node;
+                                                            //TODO: criar método (e chamá-lo aqui dentro) recorrente para atualizar altura e fator de balanceamento até a raiz
+    }
+
+    public Nodo findEmptyNode(Integer data) {
+
+        Nodo currentNode = root;
+        
+        Integer currentNodeData = currentNode.getData();
+
+        while(currentNodeData != null) {
+
+            if(data < currentNodeData) {
+                currentNode = currentNode.getLeftSon();
+                currentNodeData = currentNode.getData();
+            }
+            else {
+                currentNode = currentNode.getRightSon();
+                currentNodeData = currentNode.getData();
+            }
+        }
+        return currentNode;
     }
 
     //método insere
