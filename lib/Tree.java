@@ -33,8 +33,10 @@ public class Tree {
         Nodo.calculateBalanceFactor(node);
         Nodo.calculateNodeHeight(node);
 
+        updateHeigh(node);
+        updateBalanceFactor(node);
+
         return node;
-                                                            //TODO: criar método (e chamá-lo aqui dentro) recorrente para atualizar altura e fator de balanceamento até a raiz
     }
 
     public Nodo findEmptyNode(Integer data) {
@@ -55,6 +57,26 @@ public class Tree {
             }
         }
         return currentNode;
+    }
+
+    public void updateHeigh(Nodo node) {
+
+        Nodo parentNode = node.getParent();
+
+        while(parentNode != null) {
+            Nodo.calculateNodeHeight(parentNode);
+            parentNode = parentNode.getParent();
+        }
+    }
+
+    public void updateBalanceFactor(Nodo node) {
+
+        Nodo parentNode = node.getParent();
+
+        while(parentNode != null) {
+            Nodo.calculateBalanceFactor(parentNode);
+            parentNode = parentNode.getParent();
+        }
     }
 
     //método insere
