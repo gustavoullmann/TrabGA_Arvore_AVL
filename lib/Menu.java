@@ -27,23 +27,13 @@ public class Menu {
                         boolean aux = true;
 
                         while(aux) {
-
                             System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
                         
                             int key = input.nextInt();
     
                             Main.AVL_TREE.insertNode(key);
-
-                            //as impressões abaixo são apenas para teste
-
-                            System.out.println("ROOT:...................." + Main.AVL_TREE.getRoot().toString());
-                            System.out.println(Main.AVL_TREE.getRoot().printNodeAttributes());
-                            System.out.println("LEFTSON:................." + Main.AVL_TREE.getRoot().getLeftSon().toString());
-                            System.out.println(Main.AVL_TREE.getRoot().getLeftSon().printNodeAttributes());
-
                         }
                         menu();
-                        
                     } 
                     catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
