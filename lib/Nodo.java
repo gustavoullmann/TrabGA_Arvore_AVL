@@ -13,7 +13,7 @@ public class Nodo {
         this.parent = null;
         this.rightSon = null;
         this.leftSon = null;
-        this.nodeHeight = 0;
+        this.nodeHeight = -1;			//nodeHeight = -1 ao criar nó vazio, facilita a implementação do cálculo da altura do nó pai
         this.balanceFactor = 0;
     }
 
