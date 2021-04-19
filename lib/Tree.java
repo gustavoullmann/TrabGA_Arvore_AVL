@@ -79,6 +79,26 @@ public class Tree {
         }
     }
 
+    public Nodo searchNode(Integer data) {
+
+        Nodo currentNode = root;
+                
+        Integer currentNodeData = currentNode.getData();
+
+        while(currentNodeData != data && currentNodeData != null) {
+
+            if(data < currentNodeData) {
+                currentNode = currentNode.getLeftSon();
+                currentNodeData = currentNode.getData();
+            }
+            else {
+                currentNode = currentNode.getRightSon();
+                currentNodeData = currentNode.getData();
+            }
+        }
+        return currentNode;        
+    }
+
     //método insere
     //método remove
     //método rotação simples à direita
