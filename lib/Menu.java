@@ -24,9 +24,9 @@ public class Menu {
                     try {
                         System.out.print("\n\t" + "ATENÇÃO: Digite qualquer tecla não numérica para sair e voltar ao Menu principal! " + "\n");
                         
-                        boolean aux = true;
+                        boolean userIntegerInput = true;
 
-                        while(aux) {
+                        while(userIntegerInput) {
                             System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
                         
                             int key = input.nextInt();
@@ -60,7 +60,7 @@ public class Menu {
                         }
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
                         menu();
                     }
                     break;
@@ -74,7 +74,7 @@ public class Menu {
                         System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste                              
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
+                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
                         menu();            
                     }
                     break;

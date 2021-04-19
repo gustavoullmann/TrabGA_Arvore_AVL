@@ -15,9 +15,9 @@ public class Tree {
         root = node;
     }
 
-    public Nodo insertNode(Integer data) {
+    public Nodo insertNode(Integer data) {                  
 
-        Nodo node = findEmptyNode(data);
+        Nodo node = findEmptyNode(data);                                    //Talvez se possa usar o método searchNode aqui e eliminar findEmptyNode
 
         node.setData(data);
 
@@ -39,7 +39,7 @@ public class Tree {
         return node;
     }
 
-    public Nodo findEmptyNode(Integer data) {
+    public Nodo findEmptyNode(Integer data) {                               //Revisar duplicidade de código/reutilização com o método searchNode
 
         Nodo currentNode = root;
         
@@ -79,7 +79,7 @@ public class Tree {
         }
     }
 
-    public Nodo searchNode(Integer data) {
+    public Nodo searchNode(Integer data) {                                   //Revisar duplicidade de código/reutilização com o método findEmptyNode
 
         Nodo currentNode = root;
                 

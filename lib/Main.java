@@ -1,7 +1,7 @@
 
 public class Main {
 
-    static Tree AVL_TREE = new Tree();
+    static Tree AVL_TREE = new Tree();                              //Cria uma nova Tree em cada execução do código
     public static void main(String[] args) {
 
         AVL_TREE.insertNode(12);
@@ -13,6 +13,8 @@ public class Main {
         AVL_TREE.insertNode(20);
 
         Menu.menu();
+
+        //      ABAIXO DESTA LINHA ESTÃO APENAS TESTES DIVERSOS 
 
 
         //Menu.menu();
@@ -64,7 +66,5 @@ public class Main {
         // System.out.println("RIGHTSON:................." + Main.AVL_TREE.getRoot().getRightSon().toString());
         // System.out.println(Main.AVL_TREE.getRoot().getRightSon().printNodeAttributes());  
 
-
-        
     }
 }

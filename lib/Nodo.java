@@ -92,7 +92,7 @@ public class Nodo {
 		node.setNodeHeight(maxSonHeight + 1);
 	}
 
-	public String printNodeAttributes() {
+	public String printNodeAttributes() {							//Não fiz override de toString: gerava erro recursivo e "consumia" o método que imprime o endereço de memória do objeto
 		return 	"DATA: " + data + "\n" +
 				"PARENT: " + parent + "\n" +
 				"RIGHT SON: " + rightSon + "\n" +
@@ -100,6 +100,9 @@ public class Nodo {
 				"NODE HEIGHT: " + nodeHeight + "\n" +
 				"BALANCE FACTOR: " + balanceFactor;
 	}
+
+
+				// ACHO QUE OS MÉTODOS ABAIXO SÃO DA CLASSE TREE
 	
 	//public static void simpleRightRotation {}
 
@@ -115,7 +118,6 @@ public class Nodo {
 
 		//Toda vez que uma sub-árvore fica com um fator:
 		//positivo e sua sub-árvore da esquerda tem um fator negativo
-
 
 	//public static void doubleLeftRotation {}
 
