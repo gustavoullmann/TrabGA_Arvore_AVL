@@ -47,7 +47,17 @@ public class Menu {
                         
                     try {
                         int key = input.nextInt();
-                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste                             
+                        Nodo returnedNode = Main.AVL_TREE.searchNode(key);
+
+                        if(returnedNode.getData() == null) {
+                            System.out.println("\n" + "O valor digitado não foi encontrado na árvore!");
+                            menu();
+                        }
+                        else {
+                            System.out.println("\n" + "Abaixo as informações do nó '" + key + "'" + "\n");
+                            System.out.println(returnedNode.printNodeAttributes());
+                            menu();
+                        }
                     } 
                     catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "ATENÇÃO: digite apenas números inteiros!");
