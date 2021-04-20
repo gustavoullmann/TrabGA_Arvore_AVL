@@ -74,7 +74,7 @@ public class Nodo {
 		this.balanceFactor = balanceFactor;
 	}
 
-	public static void calculateBalanceFactor(Nodo node) {
+	public static void calculateBalanceFactor(Nodo node) {               //TODO: revisar cálculo
 
 		int heightLeftSon = node.getLeftSon().getNodeHeight();
 		int heightRightSon = node.getRightSon().getNodeHeight();
@@ -82,7 +82,7 @@ public class Nodo {
 		node.setBalanceFactor(heightLeftSon - heightRightSon);
 	}
 
-	public static void calculateNodeHeight(Nodo node) {
+	public static void calculateNodeHeight(Nodo node) {					//TODO: revisar cálculo
 
 		int heightLeftSon = node.getLeftSon().getNodeHeight();
 		int heightRightSon = node.getRightSon().getNodeHeight();

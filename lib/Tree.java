@@ -63,7 +63,7 @@ public class Tree {
         return currentNode;        
     }
 
-    public void updateHeigh(Nodo node) {
+    public void updateHeigh(Nodo node) {                        //testar no caso de exclusão!!!
 
         Nodo parentNode = node.getParent();
 
@@ -73,7 +73,7 @@ public class Tree {
         }
     }
 
-    public void updateBalanceFactor(Nodo node) {
+    public void updateBalanceFactor(Nodo node) {                //testar no caso de exclusão!!!
 
         Nodo parentNode = node.getParent();
 
