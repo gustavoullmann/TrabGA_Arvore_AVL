@@ -17,35 +17,39 @@ public class Tree {
 
     public Nodo insertNode(Integer data) {                  
 
-        Nodo node = findEmptyNode(data);                                    //Talvez se possa usar o método searchNode aqui e eliminar findEmptyNode
+        Nodo node = searchNode(data);
 
-        node.setData(data);
+        if(node.getData() == data) {
+            System.out.println("\n" + "ATENÇÃO: o valor '" + data + "' já está existe na árvore!");
+        }
+        else {
+            node.setData(data);
 
-        Nodo leftSonNode = new Nodo();
-        Nodo rightSonNode = new Nodo();
-
-        node.setLeftSon(leftSonNode);
-        node.setRightSon(rightSonNode);
-
-        leftSonNode.setParent(node);
-        rightSonNode.setParent(node);
-
-        Nodo.calculateBalanceFactor(node);
-        Nodo.calculateNodeHeight(node);
-
-        updateHeigh(node);
-        updateBalanceFactor(node);
-
+            Nodo leftSonNode = new Nodo();
+            Nodo rightSonNode = new Nodo();
+    
+            node.setLeftSon(leftSonNode);
+            node.setRightSon(rightSonNode);
+    
+            leftSonNode.setParent(node);
+            rightSonNode.setParent(node);
+    
+            Nodo.calculateBalanceFactor(node);
+            Nodo.calculateNodeHeight(node);
+    
+            updateHeigh(node);
+            updateBalanceFactor(node);
+        }
         return node;
     }
 
-    public Nodo findEmptyNode(Integer data) {                               //Revisar duplicidade de código/reutilização com o método searchNode
+    public Nodo searchNode(Integer data) {
 
         Nodo currentNode = root;
-        
+                
         Integer currentNodeData = currentNode.getData();
 
-        while(currentNodeData != null) {
+        while(currentNodeData != data && currentNodeData != null) {
 
             if(data < currentNodeData) {
                 currentNode = currentNode.getLeftSon();
@@ -56,7 +60,7 @@ public class Tree {
                 currentNodeData = currentNode.getData();
             }
         }
-        return currentNode;
+        return currentNode;        
     }
 
     public void updateHeigh(Nodo node) {
@@ -79,25 +83,7 @@ public class Tree {
         }
     }
 
-    public Nodo searchNode(Integer data) {                                   //Revisar duplicidade de código/reutilização com o método findEmptyNode
 
-        Nodo currentNode = root;
-                
-        Integer currentNodeData = currentNode.getData();
-
-        while(currentNodeData != data && currentNodeData != null) {
-
-            if(data < currentNodeData) {
-                currentNode = currentNode.getLeftSon();
-                currentNodeData = currentNode.getData();
-            }
-            else {
-                currentNode = currentNode.getRightSon();
-                currentNodeData = currentNode.getData();
-            }
-        }
-        return currentNode;        
-    }
 
     //método insere
     //método remove
