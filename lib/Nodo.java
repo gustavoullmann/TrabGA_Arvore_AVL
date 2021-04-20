@@ -79,7 +79,7 @@ public class Nodo {
 		int heightLeftSon = node.getLeftSon().getNodeHeight();
 		int heightRightSon = node.getRightSon().getNodeHeight();
 
-		node.setBalanceFactor(heightLeftSon - heightRightSon);
+		node.setBalanceFactor((heightLeftSon) - (heightRightSon));
 	}
 
 	public static void calculateNodeHeight(Nodo node) {					//TODO: revisar cálculo
