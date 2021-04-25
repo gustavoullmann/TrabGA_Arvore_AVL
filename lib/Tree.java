@@ -83,7 +83,22 @@ public class Tree {
         }
     }
 
+    public void printTree(Nodo rootNode, int level) {
 
+        int tabulationRepetition = level;
+        String tabulationSymbol = "\t";
+
+        if(rootNode.getLeftSon() == null || rootNode.getRightSon() == null) {
+            System.out.println(tabulationSymbol.repeat(tabulationRepetition++) + "*");
+        } 
+        else {
+            System.out.println(tabulationSymbol.repeat(tabulationRepetition) + String.valueOf(rootNode.getData()));
+            tabulationRepetition++;
+
+            printTree(rootNode.getLeftSon(), tabulationRepetition);
+            printTree(rootNode.getRightSon(), tabulationRepetition);
+        }        
+    }
 
     //método insere
     //método remove
@@ -113,7 +128,7 @@ Caso parecido com as inclusões;
 - No entanto, nem sempre se consegue solucionar com uma única rotação;
 - Remover elemento e retornar do pai do nó removido até a raiz (recursivamente), 
 verificando se cada nó do caminho precisa ser balanceado.
-*/
+*/  
 
-        
+
 }
