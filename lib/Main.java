@@ -11,8 +11,10 @@ public class Main {
         AVL_TREE.insertNode(9);
         AVL_TREE.insertNode(15);
         AVL_TREE.insertNode(20);
+        
+        AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
-        Menu.menu();
+        //Menu.menu();
 
         //      ABAIXO DESTA LINHA ESTÃO APENAS TESTES DIVERSOS 
 
