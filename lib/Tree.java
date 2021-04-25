@@ -89,7 +89,7 @@ public class Tree {
         String tabulationSymbol = "\t";
 
         if(rootNode.getLeftSon() == null || rootNode.getRightSon() == null) {
-            System.out.println(tabulationSymbol.repeat(tabulationRepetition++) + "*");
+            System.out.println(tabulationSymbol.repeat(tabulationRepetition) + "*");
         } 
         else {
             System.out.println(tabulationSymbol.repeat(tabulationRepetition) + String.valueOf(rootNode.getData()));
