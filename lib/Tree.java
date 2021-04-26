@@ -45,8 +45,7 @@ public class Tree {
 
     public Nodo searchNode(Integer data) {
 
-        Nodo currentNode = root;
-                
+        Nodo currentNode = root; 
         Integer currentNodeData = currentNode.getData();
 
         while(currentNodeData != data && currentNodeData != null) {
@@ -86,18 +85,32 @@ public class Tree {
     public void printTree(Nodo rootNode, int level) {
 
         int tabulationRepetition = level;
-        String tabulationSymbol = "\t";
+        String tabulation = "\t".repeat(tabulationRepetition);
 
         if(rootNode.getLeftSon() == null || rootNode.getRightSon() == null) {
-            System.out.println(tabulationSymbol.repeat(tabulationRepetition) + "*");
+            System.out.println(tabulation + "*");
         } 
         else {
-            System.out.println(tabulationSymbol.repeat(tabulationRepetition) + String.valueOf(rootNode.getData()));
+            String nodeData = String.valueOf(rootNode.getData());
+            String nodeStatistics = "[" + rootNode.balanceFactorLabel(rootNode) + "]"; 
+
+            System.out.println(tabulation + nodeData + nodeStatistics);
             tabulationRepetition++;
 
             printTree(rootNode.getLeftSon(), tabulationRepetition);
             printTree(rootNode.getRightSon(), tabulationRepetition);
         }        
+    }
+
+    public String printHeader() {
+
+        String header = "root";
+        int totalLevels = root.getNodeHeight() + 1;
+        for(int i = 2; i <= totalLevels ; i++) {
+            String currentLevel = "\t" + "level " + i;
+            header += currentLevel;
+        }
+        return header;
     }
 
     //método insere
