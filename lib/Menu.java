@@ -32,6 +32,9 @@ public class Menu {
                             int key = input.nextInt();
     
                             Main.AVL_TREE.insertNode(key);
+                            System.out.println();
+                            System.out.println(Main.AVL_TREE.printHeader());
+                            Main.AVL_TREE.printTree(Main.AVL_TREE.getRoot(), 0);
                         }
                         menu();
                     } 
