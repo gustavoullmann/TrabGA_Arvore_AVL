@@ -92,6 +92,20 @@ public class Nodo {
 		node.setNodeHeight(maxSonHeight + 1);
 	}
 
+	public String balanceFactorLabel(Nodo node) {
+
+		String label = "";
+		int balanceFactor = node.getBalanceFactor();
+
+		if(balanceFactor >= -1 && balanceFactor <= 1) {
+			label = "\033[32m" + balanceFactor + "\033[0m";
+		}
+		else {
+			label = "\033[31m" + balanceFactor + "\033[0m";
+		}
+		return label;
+	}
+	
 	public String printNodeAttributes() {							//Não fiz override de toString: gerava erro recursivo e "consumia" o método que imprime o endereço de memória do objeto
 		return 	"DATA: " + data + "\n" +
 				"PARENT: " + parent + "\n" +
