@@ -104,10 +104,10 @@ public class Tree {
 
     public String printHeader() {
 
-        String header = "root";
+        String header = "\033[1;34m" + "Root" + "\033[0m";
         int totalLevels = root.getNodeHeight() + 1;
         for(int i = 2; i <= totalLevels ; i++) {
-            String currentLevel = "\t" + "level " + i;
+            String currentLevel = "\t" + "\033[0;34m" + "level-" + i + "\033[0m";
             header += currentLevel;
         }
         return header;
