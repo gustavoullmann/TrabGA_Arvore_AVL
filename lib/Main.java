@@ -11,17 +11,19 @@ public class Main {
         // AVL_TREE.insertNode(2);
         // AVL_TREE.insertNode(9);
         // AVL_TREE.insertNode(15);
-        // AVL_TREE.insertNode(20);
+        // //AVL_TREE.insertNode(20);
 
-        AVL_TREE.insertNode(3);                                     //TODO: testar a sequencia 2,3,1 -> deu erro de nullpointer
-        AVL_TREE.insertNode(1);
-        AVL_TREE.insertNode(2);
+        // Menu.menu();
+
+        AVL_TREE.insertNode(1);                                     //TODO: testar a sequencia 2,3,1 -> deu erro de nullpointer (acredito que esse erro seja por tentar balancear uma árvore balanceada)
+        AVL_TREE.insertNode(2);                                     
+        AVL_TREE.insertNode(3);
         
         AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
         //AVL_TREE.rightLeftRotation(AVL_TREE.searchNode(1));
 
-        AVL_TREE.rebalanceNode(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(3)));
+        AVL_TREE.rebalanceNode(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(1)));
 
         AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
