@@ -131,27 +131,17 @@ public class Tree {
 
         unbalancedNode_TRES.setLeftSon(unbalancedNodeLeftSonsRightSon_LARANJA);
         unbalancedNodeLeftSonsRightSon_LARANJA.setParent(unbalancedNode_TRES);
-        //Nodo.calculateBalanceFactor(unbalancedNodeLeftSonsRightSon_LARANJA);
-        //Nodo.calculateNodeHeight(unbalancedNodeLeftSonsRightSon_LARANJA);
 
         unbalancedNodeLeftSon_DOIS.setRightSon(unbalancedNode_TRES);
         unbalancedNode_TRES.setParent(unbalancedNodeLeftSon_DOIS);
-        //Nodo.calculateBalanceFactor(unbalancedNode_TRES);
-        //Nodo.calculateNodeHeight(unbalancedNode_TRES);
 
         if(unbalancedNodeParent_PARENT == null) {
             unbalancedNodeLeftSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            //Nodo.calculateBalanceFactor(unbalancedNodeLeftSon_DOIS);
-            //Nodo.calculateNodeHeight(unbalancedNodeLeftSon_DOIS);
             root = unbalancedNodeLeftSon_DOIS;
         }
         else {
             unbalancedNodeLeftSon_DOIS.setParent(unbalancedNodeParent_PARENT);
             unbalancedNodeParent_PARENT.setLeftSon(unbalancedNodeLeftSon_DOIS);
-            //Nodo.calculateBalanceFactor(unbalancedNodeLeftSon_DOIS);
-            //Nodo.calculateNodeHeight(unbalancedNodeLeftSon_DOIS);
-            //Nodo.calculateBalanceFactor(unbalancedNodeParent_PARENT);
-            //Nodo.calculateNodeHeight(unbalancedNodeParent_PARENT);
         }
         updateHeighFrom_TOP(root);
         updateBalanceFactorFrom_TOP(root);
@@ -167,27 +157,17 @@ public class Tree {
         unbalancedNode_UM.setRightSon(unbalancedNodeRightSonsLeftSon_VERDE);
         unbalancedNodeRightSonsLeftSon_VERDE.printNodeAttributes();
         unbalancedNodeRightSonsLeftSon_VERDE.setParent(unbalancedNode_UM);
-        //Nodo.calculateBalanceFactor(unbalancedNodeRightSonsLeftSon_VERDE);
-        //Nodo.calculateNodeHeight(unbalancedNodeRightSonsLeftSon_VERDE);
 
         unbalancedNodeRightSon_DOIS.setLeftSon(unbalancedNode_UM);
         unbalancedNode_UM.setParent(unbalancedNodeRightSon_DOIS);
-        //Nodo.calculateBalanceFactor(unbalancedNode_UM);
-        //Nodo.calculateNodeHeight(unbalancedNode_UM);
 
         if(unbalancedNodeParent_PARENT == null) {
             unbalancedNodeRightSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            //Nodo.calculateBalanceFactor(unbalancedNodeRightSon_DOIS);
-            //Nodo.calculateNodeHeight(unbalancedNodeRightSon_DOIS);
             root = unbalancedNodeRightSon_DOIS;
         }
         else {
             unbalancedNodeRightSon_DOIS.setParent(unbalancedNodeParent_PARENT);
             unbalancedNodeParent_PARENT.setRightSon(unbalancedNodeRightSon_DOIS);
-            //Nodo.calculateBalanceFactor(unbalancedNodeRightSon_DOIS);
-            //Nodo.calculateNodeHeight(unbalancedNodeRightSon_DOIS);
-            //Nodo.calculateBalanceFactor(unbalancedNodeParent_PARENT);
-            //Nodo.calculateNodeHeight(unbalancedNodeParent_PARENT);
         }
         updateHeighFrom_TOP(root);
         updateBalanceFactorFrom_TOP(root);
