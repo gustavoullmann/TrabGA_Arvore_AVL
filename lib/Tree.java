@@ -40,8 +40,8 @@ public class Tree {
             //updateHeigh(node);
             //updateBalanceFactor(node);
 
-            updateHeighFrom_TOP(root);
-            updateBalanceFactorFrom_TOP(root);
+            updateHeigh(root);
+            updateBalanceFactor(root);
         
         }
         return node;
@@ -66,27 +66,27 @@ public class Tree {
         return currentNode;        
     }
 
-    public void updateHeighFrom_TOP(Nodo rootNode) {                        //testar no caso de exclusão!!!
+    public void updateHeigh(Nodo rootNode) {                        //testar no caso de exclusão!!!
 
         if(rootNode.getData() == null) {
             rootNode.setNodeHeight(-1);
         }
         else {
-            updateHeighFrom_TOP(rootNode.getLeftSon());
-            updateHeighFrom_TOP(rootNode.getRightSon());
+            updateHeigh(rootNode.getLeftSon());
+            updateHeigh(rootNode.getRightSon());
 
             Nodo.calculateNodeHeight(rootNode);
         }
     }
 
-    public void updateBalanceFactorFrom_TOP(Nodo rootNode) {                //testar no caso de exclusão!!!
+    public void updateBalanceFactor(Nodo rootNode) {                //testar no caso de exclusão!!!
        
         if(rootNode.getData() == null) {
             rootNode.setBalanceFactor(0);
         }
         else {
-            updateBalanceFactorFrom_TOP(rootNode.getLeftSon());
-            updateBalanceFactorFrom_TOP(rootNode.getRightSon());
+            updateBalanceFactor(rootNode.getLeftSon());
+            updateBalanceFactor(rootNode.getRightSon());
 
             Nodo.calculateBalanceFactor(rootNode);
         }
@@ -123,96 +123,96 @@ public class Tree {
         return header;
     }
 
-    public void rightRotation(Nodo unbalancedNode_TRES) {
+    public void rightRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeParent_PARENT = unbalancedNode_TRES.getParent();
-        Nodo unbalancedNodeLeftSon_DOIS = unbalancedNode_TRES.getLeftSon();
-        Nodo unbalancedNodeLeftSonsRightSon_LARANJA = unbalancedNodeLeftSon_DOIS.getRightSon();
+        Nodo unbalancedNodeParent = unbalancedNode.getParent();
+        Nodo unbalancedNodeLeftSon = unbalancedNode.getLeftSon();
+        Nodo unbalancedNodeLeftSonsRightSon = unbalancedNodeLeftSon.getRightSon();
 
-        unbalancedNode_TRES.setLeftSon(unbalancedNodeLeftSonsRightSon_LARANJA);
-        unbalancedNodeLeftSonsRightSon_LARANJA.setParent(unbalancedNode_TRES);
+        unbalancedNode.setLeftSon(unbalancedNodeLeftSonsRightSon);
+        unbalancedNodeLeftSonsRightSon.setParent(unbalancedNode);
 
-        unbalancedNodeLeftSon_DOIS.setRightSon(unbalancedNode_TRES);
-        unbalancedNode_TRES.setParent(unbalancedNodeLeftSon_DOIS);
+        unbalancedNodeLeftSon.setRightSon(unbalancedNode);
+        unbalancedNode.setParent(unbalancedNodeLeftSon);
 
-        if(unbalancedNodeParent_PARENT == null) {
-            unbalancedNodeLeftSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            root = unbalancedNodeLeftSon_DOIS;
+        if(unbalancedNodeParent == null) {
+            unbalancedNodeLeftSon.setParent(unbalancedNodeParent);
+            root = unbalancedNodeLeftSon;
         }
         else {
-            unbalancedNodeLeftSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            unbalancedNodeParent_PARENT.setLeftSon(unbalancedNodeLeftSon_DOIS);
+            unbalancedNodeLeftSon.setParent(unbalancedNodeParent);
+            unbalancedNodeParent.setLeftSon(unbalancedNodeLeftSon);
         }
-        updateHeighFrom_TOP(root);
-        updateBalanceFactorFrom_TOP(root);
+        updateHeigh(root);
+        updateBalanceFactor(root);
 
     }
 
-    public void leftRotation(Nodo unbalancedNode_UM) {
+    public void leftRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeParent_PARENT = unbalancedNode_UM.getParent();
-        Nodo unbalancedNodeRightSon_DOIS = unbalancedNode_UM.getRightSon();
-        Nodo unbalancedNodeRightSonsLeftSon_VERDE = unbalancedNodeRightSon_DOIS.getLeftSon();
+        Nodo unbalancedNodeParent = unbalancedNode.getParent();
+        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
+        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
 
-        unbalancedNode_UM.setRightSon(unbalancedNodeRightSonsLeftSon_VERDE);
-        unbalancedNodeRightSonsLeftSon_VERDE.printNodeAttributes();
-        unbalancedNodeRightSonsLeftSon_VERDE.setParent(unbalancedNode_UM);
+        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon);
+        unbalancedNodeRightSonsLeftSon.printNodeAttributes();
+        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode);
 
-        unbalancedNodeRightSon_DOIS.setLeftSon(unbalancedNode_UM);
-        unbalancedNode_UM.setParent(unbalancedNodeRightSon_DOIS);
+        unbalancedNodeRightSon.setLeftSon(unbalancedNode);
+        unbalancedNode.setParent(unbalancedNodeRightSon);
 
-        if(unbalancedNodeParent_PARENT == null) {
-            unbalancedNodeRightSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            root = unbalancedNodeRightSon_DOIS;
+        if(unbalancedNodeParent == null) {
+            unbalancedNodeRightSon.setParent(unbalancedNodeParent);
+            root = unbalancedNodeRightSon;
         }
         else {
-            unbalancedNodeRightSon_DOIS.setParent(unbalancedNodeParent_PARENT);
-            unbalancedNodeParent_PARENT.setRightSon(unbalancedNodeRightSon_DOIS);
+            unbalancedNodeRightSon.setParent(unbalancedNodeParent);
+            unbalancedNodeParent.setRightSon(unbalancedNodeRightSon);
         }
-        updateHeighFrom_TOP(root);
-        updateBalanceFactorFrom_TOP(root);
+        updateHeigh(root);
+        updateBalanceFactor(root);
     }
 
-    public void leftRightRotation(Nodo unbalancedNode_TRES) {
+    public void leftRightRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeLeftSon_UM = unbalancedNode_TRES.getLeftSon();
-        Nodo unbalancedNodeLeftSonsRightSon_DOIS = unbalancedNodeLeftSon_UM.getRightSon();
-        Nodo unbalancedNodeLeftSonsRightSonsLeftSon_VERDE = unbalancedNodeLeftSonsRightSon_DOIS.getLeftSon();
+        Nodo unbalancedNodeLeftSon = unbalancedNode.getLeftSon();
+        Nodo unbalancedNodeLeftSonsRightSon = unbalancedNodeLeftSon.getRightSon();
+        Nodo unbalancedNodeLeftSonsRightSonsLeftSon = unbalancedNodeLeftSonsRightSon.getLeftSon();
 
-        unbalancedNodeLeftSon_UM.setRightSon(unbalancedNodeLeftSonsRightSonsLeftSon_VERDE);
-        unbalancedNodeLeftSonsRightSonsLeftSon_VERDE.setParent(unbalancedNodeLeftSon_UM);
+        unbalancedNodeLeftSon.setRightSon(unbalancedNodeLeftSonsRightSonsLeftSon);
+        unbalancedNodeLeftSonsRightSonsLeftSon.setParent(unbalancedNodeLeftSon);
         
-        unbalancedNodeLeftSonsRightSon_DOIS.setLeftSon(unbalancedNodeLeftSon_UM);
-        unbalancedNodeLeftSon_UM.setParent(unbalancedNodeLeftSonsRightSon_DOIS);
+        unbalancedNodeLeftSonsRightSon.setLeftSon(unbalancedNodeLeftSon);
+        unbalancedNodeLeftSon.setParent(unbalancedNodeLeftSonsRightSon);
 
-        unbalancedNode_TRES.setLeftSon(unbalancedNodeLeftSonsRightSon_DOIS);
-        unbalancedNodeLeftSonsRightSon_DOIS.setParent(unbalancedNode_TRES);
+        unbalancedNode.setLeftSon(unbalancedNodeLeftSonsRightSon);
+        unbalancedNodeLeftSonsRightSon.setParent(unbalancedNode);
 
-        rightRotation(unbalancedNode_TRES);
+        rightRotation(unbalancedNode);
 
-        updateHeighFrom_TOP(root);
-        updateBalanceFactorFrom_TOP(root);
+        updateHeigh(root);
+        updateBalanceFactor(root);
     }
 
-    public void rightLeftRotation(Nodo unbalancedNode_TRES) {
+    public void rightLeftRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeRightSon_CINCO = unbalancedNode_TRES.getRightSon();
-        Nodo unbalancedNodeRightSonsLeftSon_QUATRO = unbalancedNodeRightSon_CINCO.getLeftSon();
-        Nodo unbalancedNodeRightSonsLeftSonsRightSon_AZUL = unbalancedNodeRightSonsLeftSon_QUATRO.getRightSon();
+        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
+        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
+        Nodo unbalancedNodeRightSonsLeftSonsRightSon = unbalancedNodeRightSonsLeftSon.getRightSon();
 
-        unbalancedNodeRightSon_CINCO.setLeftSon(unbalancedNodeRightSonsLeftSonsRightSon_AZUL);
-        unbalancedNodeRightSonsLeftSonsRightSon_AZUL.setParent(unbalancedNodeRightSon_CINCO);
+        unbalancedNodeRightSon.setLeftSon(unbalancedNodeRightSonsLeftSonsRightSon);
+        unbalancedNodeRightSonsLeftSonsRightSon.setParent(unbalancedNodeRightSon);
 
-        unbalancedNodeRightSonsLeftSon_QUATRO.setRightSon(unbalancedNodeRightSon_CINCO);
-        unbalancedNodeRightSon_CINCO.setParent(unbalancedNodeRightSonsLeftSon_QUATRO);
+        unbalancedNodeRightSonsLeftSon.setRightSon(unbalancedNodeRightSon);
+        unbalancedNodeRightSon.setParent(unbalancedNodeRightSonsLeftSon);
 
-        unbalancedNode_TRES.setRightSon(unbalancedNodeRightSonsLeftSon_QUATRO);
-        unbalancedNodeRightSonsLeftSon_QUATRO.setParent(unbalancedNode_TRES);
+        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon);
+        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode);
 
-        leftRotation(unbalancedNode_TRES);
+        leftRotation(unbalancedNode);
 
-        updateHeighFrom_TOP(root);
-        updateBalanceFactorFrom_TOP(root);
+        updateHeigh(root);
+        updateBalanceFactor(root);
     }
 
     //método remove
