@@ -74,7 +74,7 @@ public class Nodo {
 		this.balanceFactor = balanceFactor;
 	}
 
-	public static void calculateBalanceFactor(Nodo node) {               //TODO: revisar cálculo
+	public static void calculateBalanceFactor(Nodo node) {               
 
 		if(node.getData() != null) {
 			int heightLeftSon = node.getLeftSon().getNodeHeight();
@@ -84,7 +84,7 @@ public class Nodo {
 		}
 	}
 
-	public static void calculateNodeHeight(Nodo node) {					//TODO: revisar cálculo
+	public static void calculateNodeHeight(Nodo node) {					
 
 		if(node.getData() != null) {
 			int heightLeftSon = node.getLeftSon().getNodeHeight();
@@ -118,29 +118,5 @@ public class Nodo {
 				"LEFT SON: " + leftSon + "\n" +
 				"NODE HEIGHT: " + nodeHeight + "\n" +
 				"BALANCE FACTOR: " + balanceFactor;
-	}
-
-
-				// ACHO QUE OS MÉTODOS ABAIXO SÃO DA CLASSE TREE
-	
-	//public static void simpleRightRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//positivo e sua sub-árvore da esquerda também tem um fator positivo
-	
-	//public static void simpleLeftRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//negativo e sua sub-árvore da direita também tem um fator negativo
-
-	//public static void doubleRightRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//positivo e sua sub-árvore da esquerda tem um fator negativo
-
-	//public static void doubleLeftRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//negativo e sua sub-árvore da direita tem um fator positivo
-   
+	}   
 }
