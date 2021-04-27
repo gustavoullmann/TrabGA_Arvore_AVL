@@ -133,8 +133,8 @@ public class Tree {
         else if((bf == 2 && leftSonBf == 0) || (bf == 2 && leftSonBf == 1)) {    
             rightRotation(unbalancedNode);
         }
-        else if(bf == -2 && leftSonBf == 1) {                       
-           rightLeftRotation(unbalancedNode);
+        else if(bf == -2 && rightSonBf == 1) {                       
+            rightLeftRotation(unbalancedNode);
         }
         else {                                                      
             leftRightRotation(unbalancedNode);
