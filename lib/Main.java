@@ -1,3 +1,4 @@
+import java.security.AlgorithmConstraints;
 
 public class Main {
 
@@ -13,16 +14,22 @@ public class Main {
         // AVL_TREE.insertNode(20);
 
         AVL_TREE.insertNode(3);
-        AVL_TREE.insertNode(5);
-        AVL_TREE.insertNode(4);
+        AVL_TREE.insertNode(1);
+        AVL_TREE.insertNode(2);
         
+        AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
+
+        System.out.println(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(3)).printNodeAttributes());
+
+        AVL_TREE.rebalanceNode(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(3)));
+
         AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
         //AVL_TREE.rightRotation(AVL_TREE.getRoot());
 
-        AVL_TREE.rightLeftRotation(AVL_TREE.getRoot());
+        //AVL_TREE.rightLeftRotation(AVL_TREE.getRoot());
 
-        AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
+        //AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
         //Menu.menu();
 
