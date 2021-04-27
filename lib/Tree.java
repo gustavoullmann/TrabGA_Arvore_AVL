@@ -86,7 +86,7 @@ public class Tree {
         }
     }
 
-    public void updateHeighFrom_TOP(Nodo rootNode) {
+    public void updateHeighFrom_TOP(Nodo rootNode) {                        //testar no caso de exclusão!!!
 
         if(rootNode.getData() == null) {
             rootNode.setNodeHeight(-1);
@@ -99,7 +99,7 @@ public class Tree {
         }
     }
 
-    public void updateBalanceFactorFrom_TOP(Nodo rootNode) {
+    public void updateBalanceFactorFrom_TOP(Nodo rootNode) {                //testar no caso de exclusão!!!
        
         if(rootNode.getData() == null) {
             rootNode.setBalanceFactor(0);
@@ -255,15 +255,27 @@ public class Tree {
         updateBalanceFactorFrom_TOP(root);
     }
 
-
-    //método insere
     //método remove
-    //método rotação simples à direita
-    //método rotação simples à esquerda
-    //método rotação dupla à direita
-    //método rotação dupla à esquerda
-    //método cálculo fator de balanceamento
-    //método cálculo altura do nó
+	
+	//public static void rightRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//positivo e sua sub-árvore da esquerda também tem um fator positivo
+	
+	//public static void leftRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//negativo e sua sub-árvore da direita também tem um fator negativo
+
+	//public static void LeftRightRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//positivo e sua sub-árvore da esquerda tem um fator negativo
+
+	//public static void RightLeftRotation {}
+
+		//Toda vez que uma sub-árvore fica com um fator:
+		//negativo e sua sub-árvore da direita tem um fator positivo
 
 /*
 INSERÇÃO
@@ -285,6 +297,4 @@ Caso parecido com as inclusões;
 - Remover elemento e retornar do pai do nó removido até a raiz (recursivamente), 
 verificando se cada nó do caminho precisa ser balanceado.
 */  
-
-
 }
