@@ -66,26 +66,6 @@ public class Tree {
         return currentNode;        
     }
 
-    public void updateHeigh(Nodo node) {                        //testar no caso de exclusão!!!
-
-        Nodo parentNode = node.getParent();
-
-        while(parentNode != null) {
-            Nodo.calculateNodeHeight(parentNode);
-            parentNode = parentNode.getParent();
-        }
-    }
-
-    public void updateBalanceFactor(Nodo node) {                //testar no caso de exclusão!!!
-
-        Nodo parentNode = node.getParent();
-
-        while(parentNode != null) {
-            Nodo.calculateBalanceFactor(parentNode);
-            parentNode = parentNode.getParent();
-        }
-    }
-
     public void updateHeighFrom_TOP(Nodo rootNode) {                        //testar no caso de exclusão!!!
 
         if(rootNode.getData() == null) {
