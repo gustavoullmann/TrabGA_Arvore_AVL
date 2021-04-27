@@ -4,15 +4,33 @@ public class Main {
     static Tree AVL_TREE = new Tree();                              //Cria uma nova Tree em cada execução do código
     public static void main(String[] args) {
 
-        AVL_TREE.insertNode(12);
-        AVL_TREE.insertNode(6);
-        AVL_TREE.insertNode(18);
-        AVL_TREE.insertNode(2);
-        AVL_TREE.insertNode(9);
-        AVL_TREE.insertNode(15);
-        AVL_TREE.insertNode(20);
+        // AVL_TREE.insertNode(12);
+        // AVL_TREE.insertNode(6);
+        // AVL_TREE.insertNode(18);
+        // AVL_TREE.insertNode(2);
+        // AVL_TREE.insertNode(9);
+        // AVL_TREE.insertNode(15);
+        // AVL_TREE.insertNode(20);
+
+        AVL_TREE.insertNode(3);
+        AVL_TREE.insertNode(5);
+        AVL_TREE.insertNode(4);
         
         AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
+
+        //AVL_TREE.rightRotation(AVL_TREE.getRoot());
+
+        AVL_TREE.rightLeftRotation(AVL_TREE.getRoot());
+
+        AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
+
+        //Menu.menu();
+
+
+
+        
+
+        //AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
         //Menu.menu();
 
