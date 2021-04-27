@@ -76,20 +76,24 @@ public class Nodo {
 
 	public static void calculateBalanceFactor(Nodo node) {               //TODO: revisar cálculo
 
-		int heightLeftSon = node.getLeftSon().getNodeHeight();
-		int heightRightSon = node.getRightSon().getNodeHeight();
+		if(node.getData() != null) {
+			int heightLeftSon = node.getLeftSon().getNodeHeight();
+			int heightRightSon = node.getRightSon().getNodeHeight();
 
-		node.setBalanceFactor((heightLeftSon) - (heightRightSon));
+			node.setBalanceFactor((heightLeftSon) - (heightRightSon));
+		}
 	}
 
 	public static void calculateNodeHeight(Nodo node) {					//TODO: revisar cálculo
 
-		int heightLeftSon = node.getLeftSon().getNodeHeight();
-		int heightRightSon = node.getRightSon().getNodeHeight();
+		if(node.getData() != null) {
+			int heightLeftSon = node.getLeftSon().getNodeHeight();
+			int heightRightSon = node.getRightSon().getNodeHeight();
 
-		int maxSonHeight = Math.max(heightLeftSon, heightRightSon);
+			int maxSonHeight = Math.max(heightLeftSon, heightRightSon);
 
-		node.setNodeHeight(maxSonHeight + 1);
+			node.setNodeHeight(maxSonHeight + 1);
+		}
 	}
 
 	public String balanceFactorLabel(Nodo node) {
@@ -107,7 +111,8 @@ public class Nodo {
 	}
 	
 	public String printNodeAttributes() {							//Não fiz override de toString: gerava erro recursivo e "consumia" o método que imprime o endereço de memória do objeto
-		return 	"DATA: " + data + "\n" +
+		return 	"THIS NODE: " + toString() + "\n\n" +
+				"DATA: " + data + "\n" +
 				"PARENT: " + parent + "\n" +
 				"RIGHT SON: " + rightSon + "\n" +
 				"LEFT SON: " + leftSon + "\n" +
