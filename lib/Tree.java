@@ -92,35 +92,53 @@ public class Tree {
         }
     }
 
-    public void printTree(Nodo rootNode, int level) {
+    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //Talvez esse método seja desnecessário
 
-        int tabulationRepetition = level;
-        String tabulation = "\t".repeat(tabulationRepetition);
+        checkTreeUnbalance_FROM_TOP(rootNode.getLeftSon());
+        checkTreeUnbalance_FROM_TOP(rootNode.getRightSon());
 
-        if(rootNode.getLeftSon() == null || rootNode.getRightSon() == null) {
-            System.out.println(tabulation + "*");
-        } 
-        else {
-            String nodeData = String.valueOf(rootNode.getData());
-            String nodeStatistics = "[" + rootNode.balanceFactorLabel(rootNode) + "]"; 
+        Nodo unbalancedNode = null;
+        int balanceFactor = rootNode.getBalanceFactor();
 
-            System.out.println(tabulation + nodeData + nodeStatistics);
-            tabulationRepetition++;
-
-            printTree(rootNode.getRightSon(), tabulationRepetition);
-            printTree(rootNode.getLeftSon(), tabulationRepetition);
-        }        
+        if(balanceFactor < -1 || balanceFactor > 1) {
+            unbalancedNode = rootNode;
+        }
+        return unbalancedNode;
     }
 
-    public String printHeader() {
+    public Nodo checkTreeUnbalance_FROM_NEWNODE(Nodo newNode) {
+        
+        Nodo newNodeParent = newNode.getParent();
+        Nodo unbalancedNode = null;
+        int balanceFactor = newNode.getBalanceFactor();
 
-        String header = "\033[1;34m" + "Root" + "\033[0m";
-        int totalLevels = root.getNodeHeight() + 1;
-        for(int i = 2; i <= totalLevels ; i++) {
-            String currentLevel = "\t" + "\033[0;34m" + "level-" + i + "\033[0m";
-            header += currentLevel;
+        while(newNodeParent != null) {
+            checkTreeUnbalance_FROM_NEWNODE(newNodeParent);
         }
-        return header;
+        if(balanceFactor < -1 || balanceFactor > 1) {
+            unbalancedNode = newNode;
+        }
+        return unbalancedNode;
+    }
+
+    public void rebalanceNode(Nodo unbalancedNode) {
+
+        int bf = unbalancedNode.getBalanceFactor();
+        int leftSonBf = unbalancedNode.getLeftSon().getBalanceFactor();
+        int rightSonBf = unbalancedNode.getRightSon().getBalanceFactor();
+
+        if((bf == -2 && rightSonBf == -1) || (bf == -2 && rightSonBf == 0)) {
+            leftRotation(unbalancedNode);
+        }   
+        else if((bf == 2 && leftSonBf == 0) || (bf == 2 && leftSonBf == 1)) {    
+            rightRotation(unbalancedNode);
+        }
+        else if(bf == -2 && leftSonBf == 1) {                       
+           rightLeftRotation(unbalancedNode);
+        }
+        else {                                                      
+            leftRightRotation(unbalancedNode);
+        }
     }
 
     public void rightRotation(Nodo unbalancedNode) {
@@ -194,7 +212,7 @@ public class Tree {
         updateBalanceFactor(root);
     }
 
-    public void rightLeftRotation(Nodo unbalancedNode) {
+    public void rightLeftRotation(Nodo unbalancedNode) { 
 
         Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
         Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
@@ -215,40 +233,52 @@ public class Tree {
         updateBalanceFactor(root);
     }
 
+    public void printTree(Nodo rootNode, int level) {
+
+        int tabulationRepetition = level;
+        String tabulation = "\t".repeat(tabulationRepetition);
+
+        if(rootNode.getLeftSon() == null || rootNode.getRightSon() == null) {
+            System.out.println(tabulation + "*");
+        } 
+        else {
+            String nodeData = String.valueOf(rootNode.getData());
+            String nodeStatistics = "[" + rootNode.balanceFactorLabel(rootNode) + "]"; 
+
+            System.out.println(tabulation + nodeData + nodeStatistics);
+            tabulationRepetition++;
+
+            printTree(rootNode.getRightSon(), tabulationRepetition);
+            printTree(rootNode.getLeftSon(), tabulationRepetition);
+        }        
+    }
+
+    public String printHeader() {
+
+        String header = "\033[1;34m" + "Root" + "\033[0m";
+        int totalLevels = root.getNodeHeight() + 1;
+        for(int i = 2; i <= totalLevels ; i++) {
+            String currentLevel = "\t" + "\033[0;34m" + "level-" + i + "\033[0m";
+            header += currentLevel;
+        }
+        return header;
+    }
+
     //método remove
-	
-	//public static void rightRotation {}
 
-		//Toda vez que uma sub-árvore fica com um fator:
-		//positivo e sua sub-árvore da esquerda também tem um fator positivo
-	
-	//public static void leftRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//negativo e sua sub-árvore da direita também tem um fator negativo
-
-	//public static void LeftRightRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//positivo e sua sub-árvore da esquerda tem um fator negativo
-
-	//public static void RightLeftRotation {}
-
-		//Toda vez que uma sub-árvore fica com um fator:
-		//negativo e sua sub-árvore da direita tem um fator positivo
 
 /*
 INSERÇÃO
 
-Percorre-se a árvore verificando se a chave já existe ou não
-- Em caso positivo, encerra a tentativa de inserção
-- Caso contrário, a busca encontra o local correto de inserção do novo nó
+Percorre-se a árvore verificando se a chave já existe ou não                            DONE: dentro do método de insertNode se chama searchNode
+- Em caso positivo, encerra a tentativa de inserção                                     DONE    
+- Caso contrário, a busca encontra o local correto de inserção do novo nó               NODE: insere como leafNode
 
-Verifica-se se a inclusão tornará a árvore desbalanceada
-- Em caso negativo, o processo termina
-- Caso contrário, deve-se efetuar o balanceamento da árvore
-- Descobre-se qual a operação de rotação a ser executada
-- Executa-se a rotação
+Verifica-se se a inclusão tornará a árvore desbalanceada                                DONE
+- Em caso negativo, o processo termina                                                  DONE    
+- Caso contrário, deve-se efetuar o balanceamento da árvore                             DONE
+- Descobre-se qual a operação de rotação a ser executada                                DONE
+- Executa-se a rotação                                                                  DONE
 
 REMOÇÃO
 
