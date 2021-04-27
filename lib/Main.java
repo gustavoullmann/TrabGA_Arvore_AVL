@@ -13,13 +13,13 @@ public class Main {
         // AVL_TREE.insertNode(15);
         // AVL_TREE.insertNode(20);
 
-        AVL_TREE.insertNode(3);
+        AVL_TREE.insertNode(3);                                     //TODO: testar a sequencia 2,3,1 -> deu erro de nullpointer
         AVL_TREE.insertNode(1);
         AVL_TREE.insertNode(2);
         
         AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
-        System.out.println(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(3)).printNodeAttributes());
+        //AVL_TREE.rightLeftRotation(AVL_TREE.searchNode(1));
 
         AVL_TREE.rebalanceNode(AVL_TREE.checkTreeUnbalance_FROM_NEWNODE(AVL_TREE.searchNode(3)));
 
@@ -33,16 +33,11 @@ public class Main {
 
         //Menu.menu();
 
-
-
-        
-
         //AVL_TREE.printTree(AVL_TREE.getRoot(), 0);
 
         //Menu.menu();
 
         //      ABAIXO DESTA LINHA ESTÃO APENAS TESTES DIVERSOS 
-
 
         //Menu.menu();
 
@@ -91,7 +86,6 @@ public class Main {
         // System.out.println("LEFTneto:................." + Main.AVL_TREE.getRoot().getLeftSon().getLeftSon().toString());
         // System.out.println(Main.AVL_TREE.getRoot().getLeftSon().getLeftSon().printNodeAttributes());
         // System.out.println("RIGHTSON:................." + Main.AVL_TREE.getRoot().getRightSon().toString());
-        // System.out.println(Main.AVL_TREE.getRoot().getRightSon().printNodeAttributes());  
-
+        // System.out.println(Main.AVL_TREE.getRoot().getRightSon().printNodeAttributes());
     }
 }
