@@ -11,6 +11,7 @@ public class Menu {
         System.out.println("\t" + "'i' - Para inserir um nodo;");
         System.out.println("\t" + "'b' - Para buscar um nodo;");
         System.out.println("\t" + "'r' - Para remover um nodo;");
+        System.out.println("\t" + "'p' - Para imprimir a árvore em múltiplos percursos");
 
         System.out.print("\n" + "Qual a opção desejada? ");
         
@@ -44,7 +45,7 @@ public class Menu {
                     }
                     break;
 
-                case "b":
+                case "b":                                       //TODO: apresentar a lista de nós/nodos consultados.*/
                    
                     System.out.print("\n" + "Digite um valor inteiro para buscar na árvore: ");
                         
@@ -81,6 +82,12 @@ public class Menu {
                         menu();            
                     }
                     break;
+
+                case "p":
+
+                    System.out.print("\n" + "Imprimir a árvore em múltiplos percursose: ");
+
+                    break;
                 
                 default:
                     System.out.println("\n\t" + "A opção digitada não consta no menu!");
@@ -105,10 +112,6 @@ public class Menu {
         /*Para o comando de busca, a saída deve também 
         indicar se o número procurado,está ou não na árvore, 
         e apresentar a lista de nós/nodos consultados.*/
-
-    //TODO: Método INSERÇÃO
-        //comando "i"
-        //chamar método de saída
 
     //TODO: Método REMOÇÃO    
         //comando r
