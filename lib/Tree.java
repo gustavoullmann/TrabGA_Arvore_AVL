@@ -267,6 +267,41 @@ public class Tree {
         return header;
     }
 
+    public void preOrderTraversal(Nodo node) {
+        
+        if(node.getData() != null) {
+            System.out.print(node.getData() + "\t");
+
+            preOrderTraversal(node.getLeftSon());
+            preOrderTraversal(node.getRightSon());
+        }
+    }
+
+    public void inOrderTraversal(Nodo node) {
+
+        if(node.getData() != null) {
+            inOrderTraversal(node.getLeftSon());
+
+            System.out.print(node.getData() + "\t");
+
+            inOrderTraversal(node.getRightSon());
+        }
+    }
+
+    public void postOrderTraversal(Nodo node) {
+
+        if(node.getData() != null) {
+            postOrderTraversal(node.getLeftSon());
+            postOrderTraversal(node.getRightSon());
+
+            System.out.print(node.getData() + "\t");
+        }
+    }
+
+
+
+
+
     //método remove
 
 
