@@ -114,9 +114,10 @@ public class Tree {
 
         while(newNodeParent != null) {
             checkTreeUnbalance_FROM_NEWNODE(newNodeParent);
-        }
-        if(balanceFactor < -1 || balanceFactor > 1) {
-            unbalancedNode = newNode;
+        
+            if(balanceFactor < -1 || balanceFactor > 1) {
+                unbalancedNode = newNode;
+            }
         }
         return unbalancedNode;
     }
