@@ -92,7 +92,7 @@ public class Tree {
         }
     }
 
-    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //Talvez esse método seja desnecessário
+    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //TODO: Talvez esse método seja desnecessário
 
         checkTreeUnbalance_FROM_TOP(rootNode.getLeftSon());
         checkTreeUnbalance_FROM_TOP(rootNode.getRightSon());
@@ -106,7 +106,7 @@ public class Tree {
         return unbalancedNode;
     }
 
-    public Nodo checkTreeUnbalance_FROM_NEWNODE(Nodo newNode) {
+    public Nodo checkTreeUnbalance_FROM_NEWNODE(Nodo newNode) {     //Para fins de eficiência o método pode encerrar ao encontrar um nó com BF == -2 || 2
         
         Nodo newNodeParent = newNode.getParent();
         Nodo unbalancedNode = null;
@@ -156,7 +156,7 @@ public class Tree {
         unbalancedNodeLeftSon.setRightSon(unbalancedNode);
         unbalancedNode.setParent(unbalancedNodeLeftSon);
 
-        if(unbalancedNodeParent == null) {
+        if(unbalancedNodeParent == null) {                              //TODO: revisar se faltou fazer o setLeftSon
             unbalancedNodeLeftSon.setParent(unbalancedNodeParent);
             root = unbalancedNodeLeftSon;
         }
@@ -166,7 +166,6 @@ public class Tree {
         }
         updateHeigh(root);
         updateBalanceFactor(root);
-
     }
 
     public void leftRotation(Nodo unbalancedNode) {
@@ -182,7 +181,7 @@ public class Tree {
         unbalancedNodeRightSon.setLeftSon(unbalancedNode);
         unbalancedNode.setParent(unbalancedNodeRightSon);
 
-        if(unbalancedNodeParent == null) {
+        if(unbalancedNodeParent == null) {                                  //TODO: revisar se faltou fazer o setLeftSon
             unbalancedNodeRightSon.setParent(unbalancedNodeParent);
             root = unbalancedNodeRightSon;
         }
@@ -211,8 +210,8 @@ public class Tree {
 
         rightRotation(unbalancedNode);
 
-        updateHeigh(root);
-        updateBalanceFactor(root);
+        updateHeigh(root);                                                      //talvez seja desnecassário 
+        updateBalanceFactor(root);                                              //talvez seja desnecassário 
     }
 
     public void rightLeftRotation(Nodo unbalancedNode) { 
@@ -232,8 +231,8 @@ public class Tree {
 
         leftRotation(unbalancedNode);
 
-        updateHeigh(root);
-        updateBalanceFactor(root);
+        updateHeigh(root);                                                      //talvez seja desnecassário 
+        updateBalanceFactor(root);                                              //talvez seja desnecassário 
     }
 
     public void printTree(Nodo rootNode, int level) {
@@ -283,7 +282,7 @@ Verifica-se se a inclusão tornará a árvore desbalanceada                     
 - Descobre-se qual a operação de rotação a ser executada                                DONE
 - Executa-se a rotação                                                                  DONE
 
-REMOÇÃO (fazer exclusão por cópia)
+REMOÇÃO (fazer exclusão por cópia)                          //TODO: fazer exclusão por cópia 
 
 Caso parecido com as inclusões;
 - No entanto, nem sempre se consegue solucionar com uma única rotação;
