@@ -267,6 +267,28 @@ public class Tree {
         return header;
     }
 
+    public void printSearchNodePath (Integer data) {
+
+        Nodo currentNode = root; 
+        Integer currentNodeData = currentNode.getData();
+        String nodePath = "\n" + "Relação de nós visitados: ";
+
+        while(currentNodeData != data && currentNodeData != null) {
+
+            if(data < currentNodeData) {
+                nodePath += currentNodeData + " ";
+                currentNode = currentNode.getLeftSon();
+                currentNodeData = currentNode.getData();
+            }
+            else {
+                nodePath += currentNodeData + " ";
+                currentNode = currentNode.getRightSon();
+                currentNodeData = currentNode.getData();
+            }
+        }
+        System.out.println(nodePath);
+    }
+
     public void preOrderTraversal(Nodo node) {
         
         if(node.getData() != null) {
