@@ -136,8 +136,11 @@ public class Tree {
         else if(bf == -2 && rightSonBf == 1) {                       
             rightLeftRotation(unbalancedNode);
         }
-        else {                                                      
+        else if(bf == 2 && leftSonBf == -1) {                                                      
             leftRightRotation(unbalancedNode);
+        }
+        else {
+            return;
         }
     }
 
@@ -280,11 +283,13 @@ Verifica-se se a inclusão tornará a árvore desbalanceada                     
 - Descobre-se qual a operação de rotação a ser executada                                DONE
 - Executa-se a rotação                                                                  DONE
 
-REMOÇÃO
+REMOÇÃO (fazer exclusão por cópia)
 
 Caso parecido com as inclusões;
 - No entanto, nem sempre se consegue solucionar com uma única rotação;
 - Remover elemento e retornar do pai do nó removido até a raiz (recursivamente), 
 verificando se cada nó do caminho precisa ser balanceado.
 */  
+
+//TODO: fazer menu e métodos para impressão da árvore com diferentes percursos
 }
