@@ -45,12 +45,15 @@ public class Menu {
                     }
                     break;
 
-                case "b":                                       //TODO: apresentar a lista de nós/nodos consultados
+                case "b":                                       
                    
                     System.out.print("\n" + "Digite um valor inteiro para buscar na árvore: ");
                         
                     try {
                         int key = input.nextInt();
+
+                        Main.AVL_TREE.printSearchNodePath(key);
+
                         Nodo returnedNode = Main.AVL_TREE.searchNode(key);
 
                         if(returnedNode.getData() == null) {
@@ -122,13 +125,6 @@ public class Menu {
 }
 
     //Todos os comandos têm um parâmetro que é um número inteiro.
-    
-    //TODO: Método BUSCA
-        //comando "b"
-        //chamar método de saída
-        /*Para o comando de busca, a saída deve também 
-        indicar se o número procurado,está ou não na árvore, 
-        e apresentar a lista de nós/nodos consultados.*/
 
     //TODO: Método REMOÇÃO    
         //comando r
