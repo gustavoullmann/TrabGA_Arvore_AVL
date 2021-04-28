@@ -85,10 +85,24 @@ public class Menu {
 
                 case "p":
 
-                    System.out.print("\n" + "Imprimir a árvore em múltiplos percursos: ");
-                    //TODO: inOrder
-                    //TODO: preOrder
-                    //TODO: postOrder
+                    Nodo rootNode = Main.AVL_TREE.getRoot();
+                    Tree tree = Main.AVL_TREE;
+
+                    System.out.println("\n" + "Imprimir a árvore em múltiplos percursos: " + "\n");
+
+                    System.out.print("\t" + "Pre ordem: " + "\t");
+                    tree.preOrderTraversal(rootNode);
+                    System.out.println();
+
+                    System.out.print("\t" + "Em ordem: " + "\t");
+                    tree.inOrderTraversal(rootNode);
+                    System.out.println();
+
+                    System.out.print("\t" + "Pós ordem: " + "\t");
+                    tree.postOrderTraversal(rootNode);
+                    System.out.print("\n");
+
+                    menu();
 
                     break;
                 
