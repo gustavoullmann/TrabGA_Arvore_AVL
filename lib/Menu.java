@@ -45,7 +45,7 @@ public class Menu {
                     }
                     break;
 
-                case "b":                                       //TODO: apresentar a lista de nós/nodos consultados.*/
+                case "b":                                       //TODO: apresentar a lista de nós/nodos consultados
                    
                     System.out.print("\n" + "Digite um valor inteiro para buscar na árvore: ");
                         
@@ -85,20 +85,23 @@ public class Menu {
 
                 case "p":
 
-                    System.out.print("\n" + "Imprimir a árvore em múltiplos percursose: ");
+                    System.out.print("\n" + "Imprimir a árvore em múltiplos percursos: ");
+                    //TODO: inOrder
+                    //TODO: preOrder
+                    //TODO: postOrder
 
                     break;
                 
                 default:
                     System.out.println("\n\t" + "A opção digitada não consta no menu!");
-                    System.out.println("\t" + "Digite apenas as letras 'i', 'b' ou 'r'!" + "\n");
+                    System.out.println("\t" + "Digite apenas as letras 'i', 'b', 'r' ou 'p'!" + "\n");
                     menu();
                     break;
             }
         }
         catch (Exception e) {
             System.out.println("\n\t" + "A opção digitada não consta no menu!");
-            System.out.println("\t" + "Digite apenas as letras 'i', 'b' ou 'r'!" + "\n");
+            System.out.println("\t" + "Digite apenas as letras 'i', 'b', 'r' ou 'p'!" + "\n");
         }
         input.close();
     }
