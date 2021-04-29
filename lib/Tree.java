@@ -106,22 +106,6 @@ public class Tree {
         return unbalancedNode;
     }
 
-    public Nodo checkTreeUnbalance_FROM_NEWNODE(Nodo newNode) {     //Para fins de eficiência o método pode encerrar ao encontrar um nó com BF == -2 || 2
-        
-        Nodo newNodeParent = newNode.getParent();
-        Nodo unbalancedNode = null;
-        int balanceFactor = newNode.getBalanceFactor();
-
-        while(newNodeParent != null) {                                 //Talvez seja if...
-            checkTreeUnbalance_FROM_NEWNODE(newNodeParent);
-        
-            if(balanceFactor < -1 || balanceFactor > 1) {
-                unbalancedNode = newNode;
-            }
-        }
-        return unbalancedNode;
-    }
-
     public Nodo checkTreeUnbalance_FROM_NEWNODE2(Nodo leaf) {
 
         Nodo unbalancedNode = null;
