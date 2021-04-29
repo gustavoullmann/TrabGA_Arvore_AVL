@@ -31,8 +31,9 @@ public class Menu {
                             System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
                         
                             int key = input.nextInt();
-    
-                            Main.AVL_TREE.insertNode(key);
+                            Nodo newNode = Main.AVL_TREE.insertNode(key);
+                            Main.AVL_TREE.checkTreeUnbalanceFromLeaf(newNode);
+
                             System.out.println();
                             System.out.println(Main.AVL_TREE.printHeader());
                             Main.AVL_TREE.printTree(Main.AVL_TREE.getRoot(), 0);
@@ -124,8 +125,8 @@ public class Menu {
     }
 }
 
-    //Todos os comandos têm um parâmetro que é um número inteiro.
-
     //TODO: Método REMOÇÃO    
         //comando r
         //chamar método de saída
+
+    //TODO: fazer menu para encerrar o programa
