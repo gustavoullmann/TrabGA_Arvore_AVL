@@ -36,9 +36,6 @@ public class Tree {
     
             Nodo.calculateBalanceFactor(node);
             Nodo.calculateNodeHeight(node);
-    
-            //updateHeigh(node);
-            //updateBalanceFactor(node);
 
             updateHeigh(root);
             updateBalanceFactor(root);
@@ -66,7 +63,7 @@ public class Tree {
         return currentNode;        
     }
 
-    public void updateHeigh(Nodo rootNode) {                        //testar no caso de exclusão!!!
+    public void updateHeigh(Nodo rootNode) {                        //TODO:testar no caso de exclusão!!!
 
         if(rootNode.getData() == null) {
             rootNode.setNodeHeight(-1);
@@ -79,7 +76,7 @@ public class Tree {
         }
     }
 
-    public void updateBalanceFactor(Nodo rootNode) {                //testar no caso de exclusão!!!
+    public void updateBalanceFactor(Nodo rootNode) {                //TODO:testar no caso de exclusão!!!
        
         if(rootNode.getData() == null) {
             rootNode.setBalanceFactor(0);
@@ -92,7 +89,7 @@ public class Tree {
         }
     }
 
-    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //TODO: Talvez esse método seja desnecessário
+    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //TODO:talvez esse método seja desnecessário
 
         checkTreeUnbalance_FROM_TOP(rootNode.getLeftSon());
         checkTreeUnbalance_FROM_TOP(rootNode.getRightSon());
@@ -325,33 +322,12 @@ public class Tree {
         }
     }
 
-
-
-
-
-    //método remove
-
-
 /*
-INSERÇÃO
-
-Percorre-se a árvore verificando se a chave já existe ou não                            DONE: dentro do método de insertNode se chama searchNode
-- Em caso positivo, encerra a tentativa de inserção                                     DONE    
-- Caso contrário, a busca encontra o local correto de inserção do novo nó               NODE: insere como leafNode
-
-Verifica-se se a inclusão tornará a árvore desbalanceada                                DONE
-- Em caso negativo, o processo termina                                                  DONE    
-- Caso contrário, deve-se efetuar o balanceamento da árvore                             DONE
-- Descobre-se qual a operação de rotação a ser executada                                DONE
-- Executa-se a rotação                                                                  DONE
-
-REMOÇÃO (fazer exclusão por cópia)                          //TODO: fazer exclusão por cópia 
+REMOÇÃO (fazer exclusão por cópia)                          //TODO:fazer exclusão por cópia 
 
 Caso parecido com as inclusões;
 - No entanto, nem sempre se consegue solucionar com uma única rotação;
 - Remover elemento e retornar do pai do nó removido até a raiz (recursivamente), 
 verificando se cada nó do caminho precisa ser balanceado.
 */  
-
-//TODO: fazer menu e métodos para impressão da árvore com diferentes percursos
 }
