@@ -112,12 +112,33 @@ public class Tree {
         Nodo unbalancedNode = null;
         int balanceFactor = newNode.getBalanceFactor();
 
-        while(newNodeParent != null) {
+        while(newNodeParent != null) {                                 //Talvez seja if...
             checkTreeUnbalance_FROM_NEWNODE(newNodeParent);
         
             if(balanceFactor < -1 || balanceFactor > 1) {
                 unbalancedNode = newNode;
             }
+        }
+        return unbalancedNode;
+    }
+
+    public Nodo checkTreeUnbalance_FROM_NEWNODE2(Nodo leaf) {
+
+        Nodo unbalancedNode = null;
+
+        Nodo currentNode = leaf;
+        Nodo parent = currentNode.getParent();
+        int balanceFactor = currentNode.getBalanceFactor();
+
+        if(balanceFactor < -1 || balanceFactor > 1) {
+            unbalancedNode = currentNode;
+            rebalanceNode(unbalancedNode);
+        }
+        else if(parent == null) {
+            return unbalancedNode;
+        } 
+        else {
+            checkTreeUnbalance_FROM_NEWNODE2(parent);
         }
         return unbalancedNode;
     }
