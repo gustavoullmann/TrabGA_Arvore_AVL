@@ -106,7 +106,7 @@ public class Tree {
         return unbalancedNode;
     }
 
-    public Nodo checkTreeUnbalance_FROM_NEWNODE2(Nodo leaf) {
+    public Nodo checkTreeUnbalanceFromLeaf(Nodo leaf) {
 
         Nodo unbalancedNode = null;
 
@@ -122,7 +122,7 @@ public class Tree {
             return unbalancedNode;
         } 
         else {
-            checkTreeUnbalance_FROM_NEWNODE2(parent);
+            checkTreeUnbalanceFromLeaf(parent);
         }
         return unbalancedNode;
     }
