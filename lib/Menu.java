@@ -1,19 +1,20 @@
 import java.util.Scanner;
 
-public class Menu {
+public class Menu {          
 
     public static void menu() {
 
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in); //"\033[1;33m" +  + "\033[0m"
 
-        System.out.println("\n" + "Escolha uma opção no menu abaixo:" + "\n");
+        System.out.println("\n" + "\033[1;33m" + "Escolha uma opção no menu abaixo:"  + "\n");
 
         System.out.println("\t" + "'i' - Para inserir um nodo;");
         System.out.println("\t" + "'b' - Para buscar um nodo;");
         System.out.println("\t" + "'r' - Para remover um nodo;");
         System.out.println("\t" + "'p' - Para imprimir a árvore em múltiplos percursos");
+        System.out.println("\t" + "'s' - Para sair do programa");
 
-        System.out.print("\n" + "Qual a opção desejada? ");
+        System.out.print("\n" + "Qual a opção desejada? " + "\033[0m");
         
         try {
             String option = input.nextLine();
@@ -41,7 +42,7 @@ public class Menu {
                         menu();
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
+                        System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial..." + "\033[0m");
                         menu();
                     }
                     break;
@@ -52,13 +53,11 @@ public class Menu {
                         
                     try {
                         int key = input.nextInt();
-
                         Main.AVL_TREE.printSearchNodePath(key);
-
                         Nodo returnedNode = Main.AVL_TREE.searchNode(key);
 
                         if(returnedNode.getData() == null) {
-                            System.out.println("\n" + "O valor digitado não foi encontrado na árvore!");
+                            System.out.println("\n" + "\033[31m" + "ATENÇÃO: o valor digitado não foi encontrado na árvore!" + "\033[0m");
                             menu();
                         }
                         else {
@@ -68,7 +67,7 @@ public class Menu {
                         }
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
+                        System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial..." + "\033[0m");
                         menu();
                     }
                     break;
@@ -79,10 +78,12 @@ public class Menu {
                     
                     try {
                         int key = input.nextInt();
-                        System.out.println("TESTE chave digitada: " + key);                             //TODO: remover esse teste                              
+                        
+                        Main.AVL_TREE.removeNode(key);
+
                     } 
                     catch (Exception InputMismatchException) {
-                        System.out.println("\n\t" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial...");
+                        System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial..." + "\033[0m");
                         menu();            
                     }
                     break;
@@ -94,32 +95,38 @@ public class Menu {
 
                     System.out.println("\n" + "Imprimir a árvore em múltiplos percursos: " + "\n");
 
-                    System.out.print("\t" + "Pre ordem: " + "\t");
+                    System.out.println(tree.printHeader());
+                    tree.printTree(rootNode, 0);
+                    System.out.println("Legenda: nó[" + "\033[32m" + "fator balanceamento" + "\033[0m" + "]" + "\n");
+
+                    System.out.print("\n" + "Pré ordem: " + "\t");
                     tree.preOrderTraversal(rootNode);
                     System.out.println();
 
-                    System.out.print("\t" + "Em ordem: " + "\t");
+                    System.out.print("Em ordem: " + "\t");
                     tree.inOrderTraversal(rootNode);
                     System.out.println();
 
-                    System.out.print("\t" + "Pós ordem: " + "\t");
+                    System.out.print("Pós ordem: " + "\t");
                     tree.postOrderTraversal(rootNode);
                     System.out.print("\n");
 
                     menu();
-
                     break;
                 
+                case "s":
+
+                    System.exit(0);
+
                 default:
-                    System.out.println("\n\t" + "A opção digitada não consta no menu!");
-                    System.out.println("\t" + "Digite apenas as letras 'i', 'b', 'r' ou 'p'!" + "\n");
-                    menu();
+                    System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: a opção digitada não consta no menu!" + "\033[0m");
+                    System.out.println("\t" + "\033[31m" + "Digite apenas as letras 'i', 'b', 'r', 'p' ou 's'!" + "\033[0m" + "\n");
                     break;
             }
         }
         catch (Exception e) {
-            System.out.println("\n\t" + "A opção digitada não consta no menu!");
-            System.out.println("\t" + "Digite apenas as letras 'i', 'b', 'r' ou 'p'!" + "\n");
+            System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: a opção digitada não consta no menu!" + "\033[0m");
+            System.out.println("\t" + "\033[31m" + "Digite apenas as letras 'i', 'b', 'r', 'p' ou 's'!" + "\033[0m" + "\n");
         }
         input.close();
     }
@@ -128,5 +135,3 @@ public class Menu {
     //TODO: Método REMOÇÃO    
         //comando r
         //chamar método de saída
-
-    //TODO: fazer menu para encerrar o programa
