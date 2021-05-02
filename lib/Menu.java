@@ -79,8 +79,8 @@ public class Menu {
                     try {
                         int key = input.nextInt();
                         
-                        Main.AVL_TREE.removeNode(key);
-
+                        Nodo removedNode = Main.AVL_TREE.removeNode_NEW(key);
+                        menu();
                     } 
                     catch (Exception InputMismatchException) {
                         System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: você digitou uma tecla não numérica! Voltando para o Menu inicial..." + "\033[0m");
