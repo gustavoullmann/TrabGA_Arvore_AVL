@@ -121,12 +121,14 @@ public class Menu {
                 default:
                     System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: a opção digitada não consta no menu!" + "\033[0m");
                     System.out.println("\t" + "\033[31m" + "Digite apenas as letras 'i', 'b', 'r', 'p' ou 's'!" + "\033[0m" + "\n");
+                    menu();
                     break;
             }
         }
         catch (Exception e) {
             System.out.println("\n\t" + "\033[31m" + "ATENÇÃO: a opção digitada não consta no menu!" + "\033[0m");
             System.out.println("\t" + "\033[31m" + "Digite apenas as letras 'i', 'b', 'r', 'p' ou 's'!" + "\033[0m" + "\n");
+            menu();
         }
         input.close();
     }
