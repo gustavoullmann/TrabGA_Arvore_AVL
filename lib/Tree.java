@@ -162,6 +162,7 @@ public class Tree {
                 maxNode.getRightSon().setParent(maxNode);
             } 
             else {
+                maxNode.getRightSon().setParent(maxNode.getParent());
                 maxNode.getParent().setRightSon(maxNode.getRightSon());
 
                 maxNode.setParent(parent);
