@@ -1,4 +1,3 @@
-
 public class Tree {
 
     private Nodo root;
@@ -13,6 +12,26 @@ public class Tree {
 
     public void setRoot(Nodo node) {
         root = node;
+    }
+
+    public Nodo findMinNode(Nodo root) {
+        
+        Nodo minNode = root;
+
+        while(minNode.getLeftSon().getData() != null) {
+            minNode = minNode.getLeftSon();
+        }
+        return minNode;        
+    }
+
+    public Nodo findMaxNode(Nodo root) {
+
+        Nodo maxNode = root;
+
+        while(maxNode.getRightSon().getData() != null) {
+            maxNode = maxNode.getRightSon();
+        }
+        return maxNode;
     }
 
     public Nodo insertNode(Integer data) {                  
@@ -85,6 +104,81 @@ public class Tree {
         Menu.menu();
         return node;
     }
+
+    public Nodo removeNode_NEW (Integer data) {
+
+        Nodo node = searchNode(data);
+        Boolean isRootNode = (root == node);
+
+        if(node.getData() == null) {
+            System.out.println("\n" + "ATENÇÃO: o valor '" + data + "' não existe na árvore!");
+        }
+        else if(isRootNode){
+            removeRootNode(node);
+            Nodo unbalancedNode = checkTreeUnbalance_FROM_TOP(root);
+            if(unbalancedNode != null) {
+                rebalanceNode(unbalancedNode);
+            }            
+            Menu.menu();
+        }
+        else {//NOT ROOT NODE {
+                //removeNonRootNode(node);
+        }
+        return node;
+    }
+
+    public void removeRootNode(Nodo node) {
+        Nodo parent = node.getParent();
+        Integer rightSonData = node.getRightSon().getData();
+        Integer leftSonData = node.getLeftSon().getData();
+
+        if(rightSonData == null && leftSonData == null) {               //nó folha que é root: cria nova árvore vazia
+            Main.AVL_TREE = new Tree();
+        }
+        else if(rightSonData == null && leftSonData != null) {          //filhos a esquerda               
+            Nodo leftSon = node.getLeftSon();
+            leftSon.setParent(parent);
+            root = leftSon;
+            node = null;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }
+        else if(rightSonData != null && leftSonData == null) {          //filhos a direita
+            Nodo rightSon = node.getRightSon();
+            rightSon.setParent(parent);
+            root = rightSon;
+            node = null;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }
+        else {                                                          //filhos a esquerda e direita
+            Nodo maxNode = findMaxNode(node.getLeftSon());
+
+            if(node.getLeftSon() == maxNode) {
+                maxNode.setParent(parent);
+                maxNode.setRightSon(node.getRightSon());
+                maxNode.getRightSon().setParent(maxNode);
+            } 
+            else {
+                maxNode.getParent().setRightSon(maxNode.getRightSon());
+
+                maxNode.setParent(parent);
+                maxNode.setRightSon(node.getRightSon());
+                maxNode.getRightSon().setParent(maxNode);
+
+                maxNode.setLeftSon(node.getLeftSon());
+                maxNode.getLeftSon().setParent(maxNode);
+            }          
+            root = maxNode;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+            }
+        }
+
+    //public Nodo removeNonRootNode(Integer data) {}
 
     public Nodo searchNode(Integer data) {
 
