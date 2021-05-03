@@ -63,49 +63,7 @@ public class Tree {
         return node;
     }
 
-    public Nodo removeNode (Integer data) {
-
-        Nodo node = searchNode(data);
-        Boolean isRootNode = (root == node);                                //TODO: caso o nó removido seja ROOT é preciso fazer tree.setRoot()
-
-        if(node.getData() == null) {
-            System.out.println("\n" + "ATENÇÃO: o valor '" + data + "' não existe na árvore!");
-        }
-        else {
-            Nodo parent = node.getParent();
-            Integer rightSonData = node.getRightSon().getData();
-            Integer leftSonData = node.getLeftSon().getData();
-
-            if(rightSonData == null && leftSonData == null) {               //nó folha
-                node.setData(null);
-                node.setRightSon(null);
-                node.setLeftSon(null);
-                node.setBalanceFactor(-1);
-                node.setNodeHeight(0);
-
-                updateHeigh(root);
-                updateBalanceFactor(root);
-            }
-            else if(rightSonData == null && leftSonData != null) {          //filhos a esquerda               
-                
-            }
-            else if(rightSonData != null && leftSonData == null) {          //filhos a direita
-                
-            }
-            else {                                                          //filhos a esquerda e direita
-                
-            }
-        }
-        System.out.println("\n" + printHeader());
-        printTree(root, 0);
-        
-        System.out.println("\n\t" + "\033[32m" + "ATENÇÃO: o nó '" + data + "' foi removido da árvore!" + "\033[0m");
-
-        Menu.menu();
-        return node;
-    }
-
-    public Nodo removeNode_NEW (Integer data) {
+    public void removeNode (Integer data) {                 //TODO: mudei temporariamente o retorno para void: teste
 
         Nodo node = searchNode(data);
         Boolean isRootNode = (root == node);
@@ -114,22 +72,12 @@ public class Tree {
             System.out.println("\n" + "ATENÇÃO: o valor '" + data + "' não existe na árvore!");
         }
         else if(isRootNode){
-            removeRootNode(node);
-            Nodo unbalancedNode = checkTreeUnbalance_FROM_TOP(root);
-            if(unbalancedNode != null) {
-                rebalanceNode(unbalancedNode);
-            }            
-            Menu.menu();
+            removeRootNode(node);           
         }
         else {//NOT ROOT NODE 
-            removeNonRootNode(node);
-            Nodo unbalancedNode = checkTreeUnbalance_FROM_TOP(root);
-            if(unbalancedNode != null) {
-                rebalanceNode(unbalancedNode);
-            }            
-            Menu.menu();
+            removeNonRootNode(node);         
         }
-        return node;
+        //return node;
     }
 
     public void removeRootNode(Nodo node) {
@@ -241,10 +189,15 @@ public class Tree {
             Nodo maxNodeRightSon = maxNode.getRightSon();
 
             if(leftSon == maxNode) {
-                maxNode.setParent(parent);
+                maxNode.setParent(node.getParent());
                 maxNode.setRightSon(rightSon);
                 maxNode.getRightSon().setParent(maxNode);
-                
+
+                if(maxNode.getData() > parent.getData()){
+                    parent.setRightSon(maxNode);
+                } else {
+                    parent.setLeftSon(maxNode);
+                }
             } 
             else {
                 maxNodeRightSon.setParent(maxNodeParent);
@@ -267,8 +220,8 @@ public class Tree {
 
             node = null;
             
-            updateHeigh(root);
-            updateBalanceFactor(root);
+            updateHeigh(parent);
+            updateBalanceFactor(parent);
         }                                                                 
     }
 
