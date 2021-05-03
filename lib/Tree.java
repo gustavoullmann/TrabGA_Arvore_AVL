@@ -63,7 +63,7 @@ public class Tree {
         return node;
     }
 
-    public void removeNode (Integer data) {                 //TODO: mudei temporariamente o retorno para void: teste
+    public void removeNode (Integer data) {                 
 
         Nodo node = searchNode(data);
         Boolean isRootNode = (root == node);
@@ -74,10 +74,9 @@ public class Tree {
         else if(isRootNode){
             removeRootNode(node);           
         }
-        else {//NOT ROOT NODE 
+        else {
             removeNonRootNode(node);         
         }
-        //return node;
     }
 
     public void removeRootNode(Nodo node) {
@@ -219,9 +218,12 @@ public class Tree {
             }
 
             node = null;
+
+            updateHeigh(maxNodeParent);
+            updateBalanceFactor(maxNodeParent);
             
-            updateHeigh(parent);
-            updateBalanceFactor(parent);
+            updateHeigh(root);
+            updateBalanceFactor(root);
         }                                                                 
     }
 
@@ -295,6 +297,8 @@ public class Tree {
         if(balanceFactor < -1 || balanceFactor > 1) {
             unbalancedNode = currentNode;
             rebalanceNode(unbalancedNode);
+            updateHeigh(root);
+            updateBalanceFactor(root);
         }
         else if(parent == null) {
             return unbalancedNode;
