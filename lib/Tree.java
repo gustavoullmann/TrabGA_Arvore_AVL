@@ -121,14 +121,21 @@ public class Tree {
             }            
             Menu.menu();
         }
-        else {//NOT ROOT NODE {
-                //removeNonRootNode(node);
+        else {//NOT ROOT NODE 
+            removeNonRootNode(node);
+            Nodo unbalancedNode = checkTreeUnbalance_FROM_TOP(root);
+            if(unbalancedNode != null) {
+                rebalanceNode(unbalancedNode);
+            }            
+            Menu.menu();
         }
         return node;
     }
 
     public void removeRootNode(Nodo node) {
         Nodo parent = node.getParent();
+        Nodo rightSon = node.getRightSon();
+        Nodo leftSon = node.getLeftSon();
         Integer rightSonData = node.getRightSon().getData();
         Integer leftSonData = node.getLeftSon().getData();
 
@@ -136,50 +143,134 @@ public class Tree {
             Main.AVL_TREE = new Tree();
         }
         else if(rightSonData == null && leftSonData != null) {          //filhos a esquerda               
-            Nodo leftSon = node.getLeftSon();
             leftSon.setParent(parent);
             root = leftSon;
+            
             node = null;
 
             updateHeigh(root);
             updateBalanceFactor(root);
         }
         else if(rightSonData != null && leftSonData == null) {          //filhos a direita
-            Nodo rightSon = node.getRightSon();
             rightSon.setParent(parent);
             root = rightSon;
+           
             node = null;
 
             updateHeigh(root);
             updateBalanceFactor(root);
         }
         else {                                                          //filhos a esquerda e direita
-            Nodo maxNode = findMaxNode(node.getLeftSon());
+            Nodo maxNode = findMaxNode(leftSon);
 
-            if(node.getLeftSon() == maxNode) {
+            if(leftSon == maxNode) {
                 maxNode.setParent(parent);
-                maxNode.setRightSon(node.getRightSon());
-                maxNode.getRightSon().setParent(maxNode);
+                maxNode.setRightSon(rightSon);
+                rightSon.setParent(maxNode);
             } 
             else {
                 maxNode.getRightSon().setParent(maxNode.getParent());
                 maxNode.getParent().setRightSon(maxNode.getRightSon());
 
                 maxNode.setParent(parent);
-                maxNode.setRightSon(node.getRightSon());
-                maxNode.getRightSon().setParent(maxNode);
 
-                maxNode.setLeftSon(node.getLeftSon());
-                maxNode.getLeftSon().setParent(maxNode);
+                maxNode.setRightSon(rightSon);
+                rightSon.setParent(maxNode);
+
+                maxNode.setLeftSon(leftSon);
+                leftSon.setParent(maxNode);
             }          
             root = maxNode;
+           
+            node = null;
 
             updateHeigh(root);
             updateBalanceFactor(root);
             }
         }
 
-    //public Nodo removeNonRootNode(Integer data) {}
+    public void removeNonRootNode(Nodo node) {
+        Nodo parent = node.getParent();
+        Nodo rightSon = node.getRightSon();
+        Nodo leftSon = node.getLeftSon();
+        Integer rightSonData = node.getRightSon().getData();
+        Integer leftSonData = node.getLeftSon().getData();
+
+        if(rightSonData == null && leftSonData == null) {               //nó folha
+            parent.setRightSon(rightSon);
+            parent.setLeftSon(leftSon);
+
+            rightSon.setParent(parent);
+            leftSon.setParent(parent);
+
+            node = null;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }             
+        else if(rightSonData == null && leftSonData != null) {          //filhos a esquerda               
+            if(leftSonData > parent.getData()) {
+                parent.setRightSon(leftSon);
+            } 
+            else {
+                parent.setLeftSon(leftSon);
+            }
+            leftSon.setParent(parent);
+          
+            node = null;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }       
+        else if(rightSonData != null && leftSonData == null) {          //filhos a direita
+            if(rightSonData > parent.getData()){
+                parent.setRightSon(rightSon);
+            } else {
+                parent.setLeftSon(rightSon);
+            }
+            rightSon.setParent(parent);
+          
+            node = null;
+
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }
+        else {                                                          //filhos a esquerda e direita
+            Nodo maxNode = findMaxNode(leftSon);
+            Nodo maxNodeParent = maxNode.getParent();
+            Nodo maxNodeRightSon = maxNode.getRightSon();
+
+            if(leftSon == maxNode) {
+                maxNode.setParent(parent);
+                maxNode.setRightSon(rightSon);
+                maxNode.getRightSon().setParent(maxNode);
+                
+            } 
+            else {
+                maxNodeRightSon.setParent(maxNodeParent);
+                maxNodeParent.setRightSon(maxNodeRightSon);
+
+                if(maxNode.getData() > parent.getData()){
+                    parent.setRightSon(maxNode);
+                } else {
+                    parent.setLeftSon(maxNode);
+                }
+
+                maxNode.setParent(parent);
+                
+                leftSon.setParent(maxNode);
+                maxNode.setLeftSon(leftSon);
+
+                rightSon.setParent(maxNode);
+                maxNode.setRightSon(rightSon);
+            }
+
+            node = null;
+            
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }                                                                 
+    }
 
     public Nodo searchNode(Integer data) {
 
