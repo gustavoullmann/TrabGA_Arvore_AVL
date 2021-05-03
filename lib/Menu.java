@@ -78,14 +78,10 @@ public class Menu {
                     
                     try {
                         int key = input.nextInt();
-                        Main.AVL_TREE.removeNode(key);
+                        Main.AVL_TREE.removeNode(key); 
 
-                        Nodo unbalancedNode = Main.AVL_TREE.checkTreeUnbalance_FROM_TOP(Main.AVL_TREE.getRoot());
-                        if(unbalancedNode != null) {
-                            Main.AVL_TREE.rebalanceNode(unbalancedNode);
-                        }   
-
-                        System.out.println("\n" + Main.AVL_TREE.printHeader());
+                        System.out.println();
+                        System.out.println(Main.AVL_TREE.printHeader());
                         Main.AVL_TREE.printTree(Main.AVL_TREE.getRoot(), 0);
         
                         System.out.println("\n\t" + "\033[32m" + "ATENÇÃO: o nó '" + key + "' foi removido da árvore!" + "\033[0m");
