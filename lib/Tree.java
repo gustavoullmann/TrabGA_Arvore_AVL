@@ -248,7 +248,7 @@ public class Tree {
         return currentNode;        
     }
 
-    public void updateHeigh(Nodo rootNode) {                        //TODO:testar no caso de exclusão!!!
+    public void updateHeigh(Nodo rootNode) {                        
 
         if(rootNode.getData() == null) {
             rootNode.setNodeHeight(-1);
@@ -261,7 +261,7 @@ public class Tree {
         }
     }
 
-    public void updateBalanceFactor(Nodo rootNode) {                //TODO:testar no caso de exclusão!!!
+    public void updateBalanceFactor(Nodo rootNode) {                
        
         if(rootNode.getData() == null) {
             rootNode.setBalanceFactor(0);
@@ -272,20 +272,6 @@ public class Tree {
 
             Nodo.calculateBalanceFactor(rootNode);
         }
-    }
-
-    public Nodo checkTreeUnbalance_FROM_TOP(Nodo rootNode) {        //TODO:talvez esse método seja desnecessário
-
-        checkTreeUnbalance_FROM_TOP(rootNode.getLeftSon());
-        checkTreeUnbalance_FROM_TOP(rootNode.getRightSon());
-
-        Nodo unbalancedNode = null;
-        int balanceFactor = rootNode.getBalanceFactor();
-
-        if(balanceFactor < -1 || balanceFactor > 1) {
-            unbalancedNode = rootNode;
-        }
-        return unbalancedNode;
     }
 
     public void checkTreeUnbalance_FROM_TOP2(Nodo rootNode) {        //TODO:talvez esse método seja desnecessário
