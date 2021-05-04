@@ -66,6 +66,7 @@ public class Tree {
     public void removeNode (Integer data) {                 
 
         Nodo node = searchNode(data);
+        Nodo nodeParent = node.getParent();
         Boolean isRootNode = (root == node);
 
         if(node.getData() == null) {
@@ -77,6 +78,7 @@ public class Tree {
         else {
             removeNonRootNode(node);         
         }
+        checkTreeUnbalanceFromLeaf(nodeParent);
     }
 
     public void removeRootNode(Nodo node) {
@@ -87,7 +89,7 @@ public class Tree {
         Integer leftSonData = node.getLeftSon().getData();
 
         if(rightSonData == null && leftSonData == null) {               //nó folha que é root: cria nova árvore vazia
-            Main.AVL_TREE = new Tree();
+            node.setData(null);
         }
         else if(rightSonData == null && leftSonData != null) {          //filhos a esquerda               
             leftSon.setParent(parent);
@@ -222,9 +224,6 @@ public class Tree {
 
             node = null;
 
-            updateHeigh(maxNodeParent);
-            updateBalanceFactor(maxNodeParent);
-            
             updateHeigh(root);
             updateBalanceFactor(root);
         }                                                                 
@@ -289,25 +288,41 @@ public class Tree {
         return unbalancedNode;
     }
 
+    public void checkTreeUnbalance_FROM_TOP2(Nodo rootNode) {        //TODO:talvez esse método seja desnecessário
+
+        checkTreeUnbalance_FROM_TOP2(rootNode.getLeftSon());
+        checkTreeUnbalance_FROM_TOP2(rootNode.getRightSon());
+
+        int balanceFactor = rootNode.getBalanceFactor();
+
+        if(balanceFactor < -1 || balanceFactor > 1) {
+            rebalanceNode(rootNode);
+            updateHeigh(root);
+            updateBalanceFactor(root);
+        }
+    }
+
     public Nodo checkTreeUnbalanceFromLeaf(Nodo leaf) {
 
         Nodo unbalancedNode = null;
 
-        Nodo currentNode = leaf;
-        Nodo parent = currentNode.getParent();
-        int balanceFactor = currentNode.getBalanceFactor();
-
-        if(balanceFactor < -1 || balanceFactor > 1) {
-            unbalancedNode = currentNode;
-            rebalanceNode(unbalancedNode);
-            updateHeigh(root);
-            updateBalanceFactor(root);
-        }
-        else if(parent == null) {
-            return unbalancedNode;
-        } 
-        else {
-            checkTreeUnbalanceFromLeaf(parent);
+        if(leaf != null) {
+            Nodo currentNode = leaf;
+            Nodo parent = currentNode.getParent();
+            int balanceFactor = currentNode.getBalanceFactor();
+    
+            if(balanceFactor < -1 || balanceFactor > 1) {
+                unbalancedNode = currentNode;
+                rebalanceNode(unbalancedNode);
+                updateHeigh(root);
+                updateBalanceFactor(root);
+            }
+            else if(parent == null) {
+                return unbalancedNode;
+            } 
+            else {
+                checkTreeUnbalanceFromLeaf(parent);
+            }
         }
         return unbalancedNode;
     }
@@ -327,11 +342,8 @@ public class Tree {
         else if(bf == -2 && rightSonBf == 1) {                       
             rightLeftRotation(unbalancedNode);
         }
-        else if(bf == 2 && leftSonBf == -1) {                                                      
+        else if(bf == 2 && leftSonBf == -1) {                       //Não usado "else" para poder especificar a regra                                              
             leftRightRotation(unbalancedNode);
-        }
-        else {
-            return;
         }
     }
 
@@ -347,13 +359,18 @@ public class Tree {
         unbalancedNodeLeftSon.setRightSon(unbalancedNode);
         unbalancedNode.setParent(unbalancedNodeLeftSon);
 
-        if(unbalancedNodeParent == null) {                              //TODO: revisar se faltou fazer o setLeftSon
+        if(unbalancedNodeParent == null) {                              
             unbalancedNodeLeftSon.setParent(unbalancedNodeParent);
             root = unbalancedNodeLeftSon;
         }
         else {
             unbalancedNodeLeftSon.setParent(unbalancedNodeParent);
-            unbalancedNodeParent.setLeftSon(unbalancedNodeLeftSon);
+            if(unbalancedNodeParent.getData() > unbalancedNodeLeftSon.getData()) {
+                unbalancedNodeParent.setLeftSon(unbalancedNodeLeftSon);
+            }
+            else {
+                unbalancedNodeParent.setRightSon(unbalancedNodeLeftSon);
+            }    
         }
         updateHeigh(root);
         updateBalanceFactor(root);
@@ -361,24 +378,28 @@ public class Tree {
 
     public void leftRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeParent = unbalancedNode.getParent();
-        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
-        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
+        Nodo unbalancedNodeParent = unbalancedNode.getParent(); //8
+        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon(); //6
+        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon(); //5
 
-        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon);
-        unbalancedNodeRightSonsLeftSon.printNodeAttributes();
-        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode);
+        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon); //5
+        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode); //4
 
-        unbalancedNodeRightSon.setLeftSon(unbalancedNode);
-        unbalancedNode.setParent(unbalancedNodeRightSon);
+        unbalancedNodeRightSon.setLeftSon(unbalancedNode); //4
+        unbalancedNode.setParent(unbalancedNodeRightSon); //6
 
-        if(unbalancedNodeParent == null) {                                  //TODO: revisar se faltou fazer o setLeftSon
+        if(unbalancedNodeParent == null) {                                  
             unbalancedNodeRightSon.setParent(unbalancedNodeParent);
             root = unbalancedNodeRightSon;
         }
         else {
             unbalancedNodeRightSon.setParent(unbalancedNodeParent);
-            unbalancedNodeParent.setRightSon(unbalancedNodeRightSon);
+            if(unbalancedNodeParent.getData() > unbalancedNodeRightSon.getData()) {
+                unbalancedNodeParent.setLeftSon(unbalancedNodeRightSon);
+            }
+            else {
+                unbalancedNodeParent.setRightSon(unbalancedNodeRightSon);
+            }
         }
         updateHeigh(root);
         updateBalanceFactor(root);
@@ -387,43 +408,17 @@ public class Tree {
     public void leftRightRotation(Nodo unbalancedNode) {
 
         Nodo unbalancedNodeLeftSon = unbalancedNode.getLeftSon();
-        Nodo unbalancedNodeLeftSonsRightSon = unbalancedNodeLeftSon.getRightSon();
-        Nodo unbalancedNodeLeftSonsRightSonsLeftSon = unbalancedNodeLeftSonsRightSon.getLeftSon();
 
-        unbalancedNodeLeftSon.setRightSon(unbalancedNodeLeftSonsRightSonsLeftSon);
-        unbalancedNodeLeftSonsRightSonsLeftSon.setParent(unbalancedNodeLeftSon);
-        
-        unbalancedNodeLeftSonsRightSon.setLeftSon(unbalancedNodeLeftSon);
-        unbalancedNodeLeftSon.setParent(unbalancedNodeLeftSonsRightSon);
-
-        unbalancedNode.setLeftSon(unbalancedNodeLeftSonsRightSon);
-        unbalancedNodeLeftSonsRightSon.setParent(unbalancedNode);
-
-        rightRotation(unbalancedNode);
-
-        updateHeigh(root);                                                      //talvez seja desnecassário 
-        updateBalanceFactor(root);                                              //talvez seja desnecassário 
+        leftRotation(unbalancedNodeLeftSon);
+        rightRotation(unbalancedNode);                                   
     }
 
     public void rightLeftRotation(Nodo unbalancedNode) { 
 
         Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
-        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
-        Nodo unbalancedNodeRightSonsLeftSonsRightSon = unbalancedNodeRightSonsLeftSon.getRightSon();
-
-        unbalancedNodeRightSon.setLeftSon(unbalancedNodeRightSonsLeftSonsRightSon);
-        unbalancedNodeRightSonsLeftSonsRightSon.setParent(unbalancedNodeRightSon);
-
-        unbalancedNodeRightSonsLeftSon.setRightSon(unbalancedNodeRightSon);
-        unbalancedNodeRightSon.setParent(unbalancedNodeRightSonsLeftSon);
-
-        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon);
-        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode);
-
-        leftRotation(unbalancedNode);
-
-        updateHeigh(root);                                                      //talvez seja desnecassário 
-        updateBalanceFactor(root);                                              //talvez seja desnecassário 
+       
+        rightRotation(unbalancedNodeRightSon);
+        leftRotation(unbalancedNode);                                       
     }
 
     public void printTree(Nodo rootNode, int level) {
@@ -509,13 +504,5 @@ public class Tree {
             System.out.print(node.getData() + "\t");
         }
     }
-
-/*
-REMOÇÃO (fazer exclusão por cópia)                          //TODO:fazer exclusão por cópia 
-
-Caso parecido com as inclusões;
-- No entanto, nem sempre se consegue solucionar com uma única rotação;
-- Remover elemento e retornar do pai do nó removido até a raiz (recursivamente), 
-verificando se cada nó do caminho precisa ser balanceado.
-*/  
+ 
 }
