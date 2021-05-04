@@ -274,20 +274,6 @@ public class Tree {
         }
     }
 
-    public void checkTreeUnbalance_FROM_TOP2(Nodo rootNode) {        //TODO:talvez esse método seja desnecessário
-
-        checkTreeUnbalance_FROM_TOP2(rootNode.getLeftSon());
-        checkTreeUnbalance_FROM_TOP2(rootNode.getRightSon());
-
-        int balanceFactor = rootNode.getBalanceFactor();
-
-        if(balanceFactor < -1 || balanceFactor > 1) {
-            rebalanceNode(rootNode);
-            updateHeigh(root);
-            updateBalanceFactor(root);
-        }
-    }
-
     public Nodo checkTreeUnbalanceFromLeaf(Nodo leaf) {
 
         Nodo unbalancedNode = null;
