@@ -144,11 +144,14 @@ public class Tree {
         Integer leftSonData = node.getLeftSon().getData();
 
         if(rightSonData == null && leftSonData == null) {               //nó folha
-            parent.setRightSon(rightSon);
-            parent.setLeftSon(leftSon);
-
-            rightSon.setParent(parent);
-            leftSon.setParent(parent);
+            if(node.getData() > parent.getData()) {
+                parent.setRightSon(rightSon);
+                rightSon.setParent(parent);
+            } 
+            else {
+                parent.setLeftSon(leftSon);
+                leftSon.setParent(parent);
+            }
 
             node = null;
 
