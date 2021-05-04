@@ -110,13 +110,14 @@ public class Nodo {
 		return label;
 	}
 	
-	public String printNodeAttributes() {							//Não fiz override de toString: gerava erro recursivo e "consumia" o método que imprime o endereço de memória do objeto
-		return 	"THIS NODE: " + toString() + "\n\n" +
-				"DATA: " + data + "\n" +
-				"PARENT: " + parent + "\n" +
-				"RIGHT SON: " + rightSon + "\n" +
-				"LEFT SON: " + leftSon + "\n" +
-				"NODE HEIGHT: " + nodeHeight + "\n" +
-				"BALANCE FACTOR: " + balanceFactor;
+	public String printNodeAttributes() {							//Não fizemos override de toString: gerava erro recursivo e "consumia" o método que imprime o endereço de memória do objeto
+		return 	"\033[32m" +
+				"This Node: " + toString() + "\n" +
+				"Data: " + data + "\n" +
+				"Parent: " + parent + "\n" +
+				"Right Son: " + rightSon + "\n" +
+				"Left Son: " + leftSon + "\n" +
+				"Node Height: " + nodeHeight + "\n" +
+				"Balance Factor: " + balanceFactor + "\033[0m";
 	}   
 }
