@@ -4,7 +4,7 @@ public class Menu {
 
     public static void menu() {
 
-        Scanner input = new Scanner(System.in); //"\033[1;33m" +  + "\033[0m"
+        Scanner input = new Scanner(System.in);
 
         System.out.println("\n" + "\033[1;33m" + "Escolha uma opção no menu abaixo:"  + "\n");
 
@@ -24,12 +24,12 @@ public class Menu {
                 case "i":
             
                     try {
-                        System.out.print("\n\t" + "ATENÇÃO: Digite qualquer tecla não numérica para sair e voltar ao Menu principal! " + "\n");
+                        System.out.print("\n\t" + "\033[31m" + "ATENÇÃO: Digite qualquer tecla não numérica para sair e voltar ao Menu principal! " + "\033[0m" + "\n");
                         
                         boolean userIntegerInput = true;
 
                         while(userIntegerInput) {
-                            System.out.print("\n" + "Digite um valor inteiro para inserir na árvore: ");
+                            System.out.print("\n" + "\033[1;33m" + "Digite um valor inteiro para inserir na árvore: " + "\033[0m");
                         
                             int key = input.nextInt();
                             Nodo newNode = Main.AVL_TREE.insertNode(key);
@@ -49,7 +49,7 @@ public class Menu {
 
                 case "b":                                       
                    
-                    System.out.print("\n" + "Digite um valor inteiro para buscar na árvore: ");
+                    System.out.print("\n" + "\033[1;33m" + "Digite um valor inteiro para buscar na árvore: " + "\033[0m");
                         
                     try {
                         int key = input.nextInt();
@@ -61,7 +61,7 @@ public class Menu {
                             menu();
                         }
                         else {
-                            System.out.println("\n" + "Abaixo as informações do nó '" + key + "'" + "\n");
+                            System.out.println("\n" + "\033[1;33m" + "Abaixo as informações do nó '" + key + "'" + "\033[0m" + "\n");
                             System.out.println(returnedNode.printNodeAttributes());
                             menu();
                         }
@@ -74,7 +74,7 @@ public class Menu {
 
                 case "r": 
                     
-                    System.out.print("\n" + "Digite um valor inteiro positivo para remover da árvore: ");
+                    System.out.print("\n" + "\033[1;33m" + "Digite um valor inteiro positivo para remover da árvore: " + "\033[0m");
                     
                     try {
                         int key = input.nextInt();
@@ -98,21 +98,21 @@ public class Menu {
                     Nodo rootNode = Main.AVL_TREE.getRoot();
                     Tree tree = Main.AVL_TREE;
 
-                    System.out.println("\n" + "Imprimir a árvore em múltiplos percursos: " + "\n");
+                    System.out.println("\n" + "\033[1;33m" + "Imprimir a árvore em múltiplos percursos: " + "\033[0m" + "\n");
 
                     System.out.println(tree.printHeader());
                     tree.printTree(rootNode, 0);
-                    System.out.println("Legenda: nó[" + "\033[32m" + "fator balanceamento" + "\033[0m" + "]" + "\n");
+                    System.out.println("\033[1;33m" + "Legenda: " + "\033[0m" + "nó[" + "\033[32m" + "fator balanceamento" + "\033[0m" + "]" + "\n");
 
-                    System.out.print("\n" + "Pré ordem: " + "\t");
+                    System.out.print("\n" + "\033[1;33m" + "Pré ordem: " + "\033[0m" + "\t");
                     tree.preOrderTraversal(rootNode);
                     System.out.println();
 
-                    System.out.print("Em ordem: " + "\t");
+                    System.out.print("\033[1;33m" + "Em ordem: " + "\033[0m" + "\t");
                     tree.inOrderTraversal(rootNode);
                     System.out.println();
 
-                    System.out.print("Pós ordem: " + "\t");
+                    System.out.print("\033[1;33m" + "Pós ordem: " + "\033[0m" + "\t");
                     tree.postOrderTraversal(rootNode);
                     System.out.print("\n");
 
@@ -138,4 +138,3 @@ public class Menu {
         input.close();
     }
 }
-
