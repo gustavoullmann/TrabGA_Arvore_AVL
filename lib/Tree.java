@@ -79,6 +79,7 @@ public class Tree {
             removeNonRootNode(node);         
         }
         checkTreeUnbalanceFromLeaf(nodeParent);
+        
     }
 
     public void removeRootNode(Nodo node) {
@@ -135,6 +136,8 @@ public class Tree {
 
             updateHeigh(root);
             updateBalanceFactor(root);
+
+            checkTreeUnbalanceFromLeaf(maxNode.getRightSon());
             }
         }
 
@@ -226,6 +229,8 @@ public class Tree {
 
             updateHeigh(root);
             updateBalanceFactor(root);
+
+            checkTreeUnbalanceFromLeaf(maxNodeRightSon);
         }                                                                 
     }
 
