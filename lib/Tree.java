@@ -350,15 +350,15 @@ public class Tree {
 
     public void leftRotation(Nodo unbalancedNode) {
 
-        Nodo unbalancedNodeParent = unbalancedNode.getParent(); //8
-        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon(); //6
-        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon(); //5
+        Nodo unbalancedNodeParent = unbalancedNode.getParent();
+        Nodo unbalancedNodeRightSon = unbalancedNode.getRightSon();
+        Nodo unbalancedNodeRightSonsLeftSon = unbalancedNodeRightSon.getLeftSon();
 
-        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon); //5
-        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode); //4
+        unbalancedNode.setRightSon(unbalancedNodeRightSonsLeftSon);
+        unbalancedNodeRightSonsLeftSon.setParent(unbalancedNode);
 
-        unbalancedNodeRightSon.setLeftSon(unbalancedNode); //4
-        unbalancedNode.setParent(unbalancedNodeRightSon); //6
+        unbalancedNodeRightSon.setLeftSon(unbalancedNode);
+        unbalancedNode.setParent(unbalancedNodeRightSon);
 
         if(unbalancedNodeParent == null) {                                  
             unbalancedNodeRightSon.setParent(unbalancedNodeParent);
@@ -443,13 +443,13 @@ public class Tree {
                 currentNodeData = currentNode.getData();
             }
         }
-        System.out.println(nodePath);
+        System.out.println("\033[32m" + nodePath + "\033[0m");
     }
 
     public void preOrderTraversal(Nodo node) {
         
         if(node.getData() != null) {
-            System.out.print(node.getData() + "\t");
+            System.out.print("\033[32m" + node.getData() + "\033[0m" + "\t");
 
             preOrderTraversal(node.getLeftSon());
             preOrderTraversal(node.getRightSon());
@@ -461,7 +461,7 @@ public class Tree {
         if(node.getData() != null) {
             inOrderTraversal(node.getLeftSon());
 
-            System.out.print(node.getData() + "\t");
+            System.out.print("\033[32m" + node.getData() + "\033[0m" + "\t");
 
             inOrderTraversal(node.getRightSon());
         }
@@ -473,8 +473,7 @@ public class Tree {
             postOrderTraversal(node.getLeftSon());
             postOrderTraversal(node.getRightSon());
 
-            System.out.print(node.getData() + "\t");
+            System.out.print("\033[32m" + node.getData() + "\033[0m" + "\t");
         }
     }
- 
-}
+ }
